@@ -1,8 +1,6 @@
 version: 2.1
 
-# 実行するjob
 jobs:
-  # buildするjob
   build:
     machine:
       image: circleci/classic:edge
@@ -11,7 +9,7 @@ jobs:
       - run:
           name: docker-compose build
           command: docker-compose build
-  # testするjob
+
   test:
     machine:
       image: circleci/classic:edge
