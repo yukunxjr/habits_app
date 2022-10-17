@@ -8,8 +8,8 @@ jobs:
     working_directory: ~/havits_app/back
     steps:
       - checkout
-        path: ~/havits_app
-      # - ruby/install-deps
+        path: ~/havits_app/back
+      - ruby/install-deps
 
   test:
     docker:
@@ -27,7 +27,7 @@ jobs:
     working_directory: ~/havits_app/back
     steps:
       - checkout
-        path: ~/havits_app
+        path: ~/havits_app/back
       - ruby/install-deps
       - run:
           name: Database setup
