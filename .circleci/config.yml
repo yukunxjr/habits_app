@@ -7,8 +7,8 @@ jobs:
       - image: circleci/ruby:2.7
     working_directory: ~/havits_app/back
     steps:
-      - checkout:
-          path: ~/havits_app
+      - checkout
+        # path: ~/havits_app
       - ruby/install-deps
 
   test:
@@ -26,8 +26,8 @@ jobs:
       RAILS_ENV: test
     working_directory: ~/havits_app/back
     steps:
-      - checkout:
-          path: ~/havits_app
+      - checkout
+        # path: ~/havits_app
       - ruby/install-deps
       - run:
           name: Database setup
