@@ -7,7 +7,7 @@ jobs:
     # machine:
     #   image: circleci/classic:edge
     docker:
-      - image: circleci/ruby:2.7.6
+      - image: cimg/base:stable
     steps:
       - checkout
       - run:
@@ -18,7 +18,7 @@ jobs:
     # machine:
     #   image: circleci/classic:edge
     docker:
-      - image: circleci/ruby:2.7.6
+      - image: cimg/base:stable
     steps:
       - checkout
       - run:
