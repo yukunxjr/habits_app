@@ -10,7 +10,7 @@ jobs:
     working_directory: ~/havits_app/back
     steps:
       - checkout:
-        path: ~/havits_app
+          path: ~/havits_app
       - ruby/install-deps
 
   # testするjob
@@ -30,14 +30,14 @@ jobs:
     working_directory: ~/havits_app/back
     steps:
       - checkout:
-        path: ~/havits_app
+          path: ~/havits_app
       - ruby/install-deps
       - run:
-        name: Database setup
-        command: bundle exec rails db:migrate
+          name: Database setup
+          command: bundle exec rails db:migrate
       - run:
-        name: test
-        command: bundle exec rake test
+          name: test
+          command: bundle exec rake test
 
 # 順番を制御するworkflow
 workflows:
