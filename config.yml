@@ -1,46 +1,41 @@
-version: '2.1'
+version: 2.1
 orbs:
   ruby: circleci/ruby@2.0.0
-  node: circleci/node@5.0.3
 jobs:
   build:
     docker:
-      - image: 'cimg/ruby:2.7.6'
+      - image: cimg/ruby:2.7.6
+    working_directory: ~/havits_app/back
     steps:
       - checkout
+        path: ~/havits_app/back
       - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: yarn.lock
 
   test:
     docker:
-      - image: 'cimg/ruby:2.7.6'
-      - environment:
+      - image: circleci/ruby:2.7
+      - image: circleci/mysql:5
+        environment:
           MYSQL_DATEBASE: app_test
           MYSQL_USER: root
           MYSQL_PASSWORD: rootpassword
-        # image: 'circleci/postgres:9.5-alpine'
     environment:
       BUNDLE_JOBS: '3'
       BUNDLE_RETRY: '3'
       APP_DATABASE_HOST: '127.0.0.1'
       RAILS_ENV: test
+    working_directory: ~/havits_app/back
     steps:
       - checkout
+        path: ~/havits_app/back
       - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: yarn.lock
-      - run:
-          name: rails db:migrate
-          command: bundle exec rails db:migrate
       - run:
           name: Database setup
-          command: 'bundle exec rails db:schema:load --trace'
+          command: bundle exec rails db:migrate
       - run:
-          name: Rspec
-          include: bundle exec rspec
+          name: test
+          command: bundle exec rake test
+
 workflows:
   build_and_test:
     jobs:
