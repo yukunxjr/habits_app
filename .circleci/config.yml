@@ -37,7 +37,7 @@ jobs:
           command: bundle exec rake test
 
 workflows:
-  build_and_test_and_deploy:
+  build_and_test:
     jobs:
       - build
       - test:
