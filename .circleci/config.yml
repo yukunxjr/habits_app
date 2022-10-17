@@ -1,9 +1,7 @@
 version: 2.1
 orbs:
   ruby: circleci/ruby@1.1.2
-# 実行するjob
 jobs:
-  # buildするjob
   build:
     docker:
       - image: circleci/ruby:2.7.6
@@ -13,7 +11,6 @@ jobs:
           path: ~/havits_app
       - ruby/install-deps
 
-  # testするjob
   test:
     docker:
       - image: circleci/ruby:2.7.6
@@ -39,7 +36,6 @@ jobs:
           name: test
           command: bundle exec rake test
 
-# 順番を制御するworkflow
 workflows:
   build_and_test_and_deploy:
     jobs:
