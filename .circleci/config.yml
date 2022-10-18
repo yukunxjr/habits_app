@@ -1,26 +1,74 @@
+# version: 2.1
+# orbs:
+#   ruby: circleci/ruby@2.0.0
+#   node: circleci/node@5.0.3
+# commands:
+#   setup:
+#     steps:
+#       - checkout
+#       - ruby/install-deps
+#       - node/install-packages:
+#           pkg-manager: yarn
+#           cache-key: 'yarn.lock'
+# jobs:
+#   build:
+#     docker:
+#       - image: 'cimg/ruby:2.7.6'
+#     steps:
+#       - setup
+#   test:
+#     docker:
+#       - image: 'cimg/ruby:2.7.6'
+#       - image: 'cimg/mysql:5.7.38'
+#         name: db
+#         environment:
+#           MYSQL_DATEBASE: app_test
+#           MYSQL_USER: root
+#           MYSQL_PASSWORD: rootpassword
+#     environment:
+#       BUNDLE_JOBS: '3'
+#       BUNDLE_RETRY: '3'
+#       APP_DATABASE_HOST: '127.0.0.1'
+#       RAILS_ENV: test
+#     steps:
+#       - setup
+#       - run:
+#           name: rails db:migrate
+#           command: bundle exec rails db:migrate
+#       - run:
+#           name: Database setup
+#           command: 'bundle exec rails db:schema:load --trace'
+#       - run:
+#           name: Rspec
+#           command: bundle exec rspec
+# workflows:
+#   build_and_test:
+#     jobs:
+#       - build
+#       - test:
+#           requires:
+#             - build
+
 version: 2.1
 orbs:
   ruby: circleci/ruby@2.0.0
   node: circleci/node@5.0.3
-commands:
-  setup:
+
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:2.7.6
     steps:
       - checkout
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
           cache-key: 'yarn.lock'
-jobs:
-  build:
-    docker:
-      - image: 'cimg/ruby:2.7.6'
-    steps:
-      - setup
   test:
+    parallelism: 3
     docker:
-      - image: 'cimg/ruby:2.7.6'
+      - image: cimg/ruby:2.7.6
       - image: 'cimg/mysql:5.7.38'
-        name: db
         environment:
           MYSQL_DATEBASE: app_test
           MYSQL_USER: root
@@ -31,20 +79,53 @@ jobs:
       APP_DATABASE_HOST: '127.0.0.1'
       RAILS_ENV: test
     steps:
-      - setup
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: 'yarn.lock'
       - run:
           name: rails db:migrate
           command: bundle exec rails db:migrate
       - run:
           name: Database setup
-          command: 'bundle exec rails db:schema:load --trace'
+          command: bundle exec rails db:schema:load --trace
       - run:
           name: Rspec
           command: bundle exec rspec
+  # deploy:
+  #   docker:
+  #     - image: cimg/ruby:3.1-browsers
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: 'Install Heroku CLI, if necessary'
+  #         command: |
+  #           if [[ $(command -v heroku) == "" ]]; then
+  #             curl https://cli-assets.heroku.com/install.sh | sh
+  #           else
+  #             echo "Heroku is already installed. No operation was performed."
+  #           fi
+  #     - run:
+  #         name: Deploy to Heroku_Production
+  #         command: |
+  #           git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_PRD.git main
+  #     - run:
+  #         name: db migration
+  #         command: |
+  #           heroku run rails db:migrate --app ${HEROKU_APP_NAME_PRD}
 workflows:
+  version: 2
   build_and_test:
     jobs:
       - build
       - test:
           requires:
             - build
+  # deploy:
+  #   jobs:
+  #     - deploy:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - main
