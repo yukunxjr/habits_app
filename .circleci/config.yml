@@ -7,21 +7,18 @@ commands:
     steps:
       - checkout
       - ruby/install-deps
-      # - node/install-packages:
-      #     pkg-manager: yarn
-      #     cache-key: 'yarn.lock'
 jobs:
   build:
     docker:
       - image: 'cimg/ruby:2.7.6'
-    working_directory: ~/repo
+    working_directory: ~/back
     steps:
       - checkout
       - restore_cache:
           keys:
-            - gem-cache-v1-{{ checksum "~/repo/Gemfile.lock" }}
+            - gem-cache-v1-{{ checksum "~/back/Gemfile.lock" }}
             - gem-cache-v1-
-          working_directory: ~/repo
+          working_directory: ~/back
 
       # gem install
       - run:
@@ -29,13 +26,13 @@ jobs:
             gem install bundler 
             bundle config set path 'vendor/bundle'
             bundle install --jobs=4 --retry=3
-          working_directory: ~/repo
+          working_directory: ~/back
 
       - save_cache:
-          key: gem-cache-v1-{{ checksum "~/repo/Gemfile.lock" }}
+          key: gem-cache-v1-{{ checksum "~/back/Gemfile.lock" }}
           paths:
-            - ~/repo/vendor/bundle
-          working_directory: ~/repo
+            - ~/back/vendor/bundle
+          working_directory: ~/back
   test:
     docker:
       - image: 'cimg/ruby:2.7.6'
@@ -45,11 +42,16 @@ jobs:
           MYSQL_DATEBASE: app_test
           MYSQL_USER: root
           MYSQL_PASSWORD: rootpassword
+
     environment:
       BUNDLE_JOBS: '3'
       BUNDLE_RETRY: '3'
       APP_DATABASE_HOST: '127.0.0.1'
       RAILS_ENV: test
+
+    working_directory: ~/back
+    steps:
+      - checkout
       - run:
           name: rails db:migrate
           command: bundle exec rails db:migrate
