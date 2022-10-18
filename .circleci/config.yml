@@ -21,7 +21,7 @@ jobs:
           keys:
             - gem-cache-v1-{{ checksum "~/repo/Gemfile.lock" }}
             - gem-cache-v1-
-          working_directory: ~/repo
+          # working_directory: ~/repo
 
       # gem install
       - run:
@@ -29,13 +29,13 @@ jobs:
             gem install bundler 
             bundle config set path 'vendor/bundle'
             bundle install --jobs=4 --retry=3
-          working_directory: ~/repo
+          # working_directory: ~/repo
 
       - save_cache:
           key: gem-cache-v1-{{ checksum "~/repo/Gemfile.lock" }}
           paths:
             - ~/repo/vendor/bundle
-          working_directory: ~/repo
+          # working_directory: ~/repo
   test:
     docker:
       - image: 'cimg/ruby:2.7.6'
@@ -50,6 +50,9 @@ jobs:
       BUNDLE_RETRY: '3'
       APP_DATABASE_HOST: '127.0.0.1'
       RAILS_ENV: test
+    working_directory: ~/repo
+    steps:
+      - checkout
       - run:
           name: rails db:migrate
           command: bundle exec rails db:migrate
