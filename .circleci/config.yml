@@ -1,37 +1,37 @@
-version: '2.1'
+version: 2.1
 orbs:
   ruby: circleci/ruby@2.0.0
   node: circleci/node@5.0.3
-jobs:
-  build:
-    docker:
-      - image: 'cimg/ruby:2.7.6'
+commands:
+  setup:
     steps:
       - checkout
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
-          cache-key: yarn.lock
-
+          cache-key: 'yarn.lock'
+jobs:
+  build:
+    docker:
+      - image: 'cimg/ruby:2.7.6'
+    steps:
+      - setup
   test:
     docker:
       - image: 'cimg/ruby:2.7.6'
-      - environment:
+      - image: 'cimg/mysql:5.7.38'
+        name: db
+        environment:
           MYSQL_DATEBASE: app_test
           MYSQL_USER: root
           MYSQL_PASSWORD: rootpassword
-        # image: 'circleci/postgres:9.5-alpine'
     environment:
       BUNDLE_JOBS: '3'
       BUNDLE_RETRY: '3'
       APP_DATABASE_HOST: '127.0.0.1'
       RAILS_ENV: test
     steps:
-      - checkout
-      - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: yarn.lock
+      - setup
       - run:
           name: rails db:migrate
           command: bundle exec rails db:migrate
@@ -40,7 +40,7 @@ jobs:
           command: 'bundle exec rails db:schema:load --trace'
       - run:
           name: Rspec
-          include: bundle exec rspec
+          command: bundle exec rspec
 workflows:
   build_and_test:
     jobs:
