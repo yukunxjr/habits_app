@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:5.7.39
+  db: # MySQLが起動するコンテナ
+    image: mysql:8.0.31
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
     platform: linux/amd64
-    env_file:
-      - ./back/environments/db.env
-    restart: always
     volumes:
-      - db-data:/var/lib/mysql:cached
+      - mysql_data:/var/lib/mysql # データの永続化
+    command: --default-authentication-plugin=mysql_native_password
 
   back:
     build: back/
@@ -38,4 +38,5 @@ volumes:
   public-data:
   tmp-data:
   log-data:
-  db-data:
+  # db-data:
+  mysql_data:
