@@ -67,20 +67,23 @@ export default {
   },
   auth: {
     redirect: {
-      login: "/users/login",
+      login: "/login",
       logout: "/",
       callback: false,
-      home: "/users/profile",
+      home: "/",
     },
     strategies: {
       local: {
         endpoints: {
+          //ログイン処理に関する設定
           login: {
-            url: "/api/v1/auth/login",
+            url: "/api/v1/auth/sign_in",
             method: "post",
-            propertyName: "token",
+            propertyName: "access_token",
           },
-          logout: { url: "/api/v1/auth/logout", method: "post" },
+          //ログアウト処理に関する設定
+          logout: { url: "/api/v1/auth/sign_out", method: "delete" },
+          //ログイン時にユーザー情報を保存するか。
           user: false,
         },
       },
