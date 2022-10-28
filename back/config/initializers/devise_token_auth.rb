@@ -16,19 +16,6 @@ DeviseTokenAuth.setup do |config|
   # to 31. It is recommended to not use a value more than 10 in other environments.
   config.token_cost = Rails.env.test? ? 4 : 10
 
-  # リクエストごとにトークンを更新するか
-  config.change_headers_on_each_request = false
-
-  # トークンの有効期間
-  config.token_lifespan = 2.weeks
-
-  # headersの名前対応
-  config.headers_names = {:'access-token' => 'access-token',
-                          :'client' => 'client',
-                          :'expiry' => 'expiry',
-                          :'uid' => 'uid',
-                          :'token-type' => 'token-type' }
-
   # Sets the max number of concurrent devices per user, which is 10 by default.
   # After this limit is reached, the oldest tokens will be removed.
   # config.max_number_of_devices = 10

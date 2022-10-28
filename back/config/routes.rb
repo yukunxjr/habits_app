@@ -4,7 +4,20 @@ Rails.application.routes.draw do
   devise_for :users
   namespace :api do
     namespace :v1 do
-      mount_devise_token_auth_for 'User', at: 'auth'
+      mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+        registrations: 'auth/registrations'
+      }
     end
   end
 end
+
+
+# ログイン
+  # POST api/v1/auth/sign_up
+# ログアウト
+  # DELETE api/v1/auth/sign_out (uid,access-token,client)
+# 新規登録
+  # POST api/v1/auth 
+# 退会
+  # DELETE api/v1/auth (uid,access-token,client)
+
