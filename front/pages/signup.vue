@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-container>
     <v-card width="500px" class="mx-auto mt-5">
       <v-card-title>
@@ -74,4 +74,4 @@ export default {
     },
   },
 };
-</script>
+</script> -->
