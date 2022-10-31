@@ -63,14 +63,14 @@ export default {
   },
 
   axios: {
-    baseURL: "http:localhost:3000",
+    baseURL: "http://localhost:3000/",
   },
   auth: {
     redirect: {
-      login: "/users/signin",
-      logout: "/",
+      login: "/users/signin", //middleware:authを設定したURLにアクセスがあった場合の、リダイレクト先。
+      logout: "/", //ログアウト後のリダイレクト先
       callback: false,
-      home: "/users/profile",
+      home: "/users/home", //ログイン後のリダイレクト先。
     },
     strategies: {
       local: {
@@ -78,7 +78,7 @@ export default {
           login: {
             url: "/api/v1/auth/sign_in",
             method: "post",
-            propertyName: "token",
+            propertyName: "access_token",
           },
           logout: { url: "/api/v1/auth/sign_out", method: "delete" },
           user: false,

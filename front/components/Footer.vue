@@ -1,11 +1,7 @@
 <template>
-  <v-footer dark absolute
-    ><div class="footer">&copy; 2022. Habits </div>
+  <v-footer padless absolute>
+    <v-col class="text-center" cols="12">
+      {{ new Date().getFullYear() }} - <strong>Habits</strong> -
+    </v-col>
   </v-footer>
 </template>
-
-<style lang="scss" scoped>
-.footer {
-  margin: auto;
-}
-

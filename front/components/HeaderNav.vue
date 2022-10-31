@@ -1,11 +1,15 @@
 <template>
   <header>
-    <v-app-bar app dark>
+    <v-app-bar color="white">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>学習管理アプリ　Habits</v-toolbar-title>
-      <v-tabs>
-        <v-tab v-for="(Item, index) in Items" :key="index">
-          {{ Item.name }}
+      <v-tabs background-color="transparent" color="red" grow>
+        <v-tab v-for="(Item, index) in Items" :key="index" class="text-h6">
+          <nuxt-link :to="Item.url" class="text-decoration-none grey--text">
+            <v-icon>{{ Item.icon }}</v-icon>
+            <span class="item-space"> </span>
+            {{ Item.name }}
+          </nuxt-link>
         </v-tab>
       </v-tabs>
     </v-app-bar>
@@ -13,7 +17,9 @@
       <v-list nav dense>
         <v-list-item-group>
           <v-list-item v-for="(Item, index) in Items" :key="index">
-            <v-list-item-title>{{ Item.name }}</v-list-item-title>
+            <nuxt-link :to="Item.url" class="text-decoration-none grey--text">
+              {{ Item.name }}
+            </nuxt-link>
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -49,5 +55,8 @@ export default {
   @include display_pc {
     display: block !important;
   }
+}
+.item-space {
+  padding: 3px;
 }
 </style>

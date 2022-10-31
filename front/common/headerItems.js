@@ -1,28 +1,33 @@
 export default {
   Items: [
     {
-      name: "HOME",
-      url: "#",
-    },
-    {
-      name: "ABOUT",
-      url: "#",
-    },
-    {
-      name: "WORK",
-      url: "#",
-    },
-    {
       name: "SERVICE",
-      url: "#",
+      url: "/",
+      icon: "mdi-star",
     },
     {
-      name: "BLOG",
-      url: "#",
+      name: "MEMO",
+      url: "/memo",
+      icon: "mdi-animation",
     },
     {
-      name: "ACCESS",
+      name: "LOGIN",
+      url: "/users/login",
+    },
+    {
+      name: "TAIMER",
+      url: "/timer",
+      icon: "mdi-timer",
+    },
+    {
+      name: "RANKING",
       url: "#",
+      icon: "mdi-certificate",
+    },
+    {
+      name: "ACCOUNT",
+      url: "/users/account",
+      icon: "mdi-account-circle",
     },
   ],
 };
