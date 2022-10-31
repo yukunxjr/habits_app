@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-container>
     <v-card width="500px" class="mx-auto mt-5">
       <v-card-title>
@@ -74,4 +74,92 @@ export default {
     },
   },
 };
+</script> -->
+
+<template>
+  <v-container>
+    <v-card width="500px" class="mx-auto mt-5">
+      <v-card-title>
+        <h1 class="display-1">新規登録</h1>
+      </v-card-title>
+
+      <!-- <Notification :message="error" v-if="error" class="mb-4 pb-3" /> -->
+      <!-- <v-form ref="form" lazy-validation>
+  <v-text-field
+    v-model="user.name"
+    prepend-icon="mdi-name"
+    label="名前"
+  /> -->
+      <v-card-text>
+        <v-form @submit.prevent="signup">
+          <!-- <b-form-group label="名前:"> -->
+          <v-text-field
+            v-model="name"
+            prepend-icon="mdi-name"
+            label="名前"
+            type="text"
+          />
+
+          <v-text-field
+            v-model="email"
+            prepend-icon="mdi-email"
+            label="メールアドレス"
+            type="email"
+          />
+          <v-text-field
+            v-model="password"
+            prepend-icon="mdi-lock"
+            append-icon="mdi-eye-off"
+            label="パスワード"
+            type="password"
+          />
+          <v-text-field
+            v-model="password_confirmation"
+            prepend-icon="mdi-lock"
+            append-icon="mdi-eye-off"
+            label="パスワード確認"
+            type="password"
+          />
+          <v-btn color="blue darken-3" block class="white--text">送信</v-btn>
+          <!-- <b-button block type="submit" variant="primary">Submit</b-button> -->
+        </v-form>
+      </v-card-text>
+    </v-card>
+  </v-container>
+</template>
+
+<script>
+export default {
+  data: function () {
+    return {
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+      error: null,
+    };
+  },
+  methods: {
+    async signup() {
+      try {
+        await this.$axios.post("/api/v1/auth", {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.password_confirmation,
+        });
+        await this.$auth.loginWith("local", {
+          data: {
+            password: this.password,
+            email: this.email,
+          },
+        });
+      } catch (e) {
+        this.error = e.response.data.errors.full_messages;
+      }
+    },
+  },
+};
 </script>
+
+<style></style>
