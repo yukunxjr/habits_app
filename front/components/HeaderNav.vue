@@ -3,7 +3,14 @@
     <v-app-bar color="white">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>学習管理アプリ　Habits</v-toolbar-title>
-      <v-tabs background-color="transparent" color="red" grow>
+      <!-- PC画面 -->
+      <!-- ログインしている -->
+      <v-tabs
+        v-if="this.$auth.loggedIn"
+        background-color="transparent"
+        color="red"
+        grow
+      >
         <v-tab v-for="(Item, index) in Items" :key="index" class="text-h6">
           <nuxt-link :to="Item.url" class="text-decoration-none grey--text">
             <v-icon>{{ Item.icon }}</v-icon>
@@ -11,9 +18,56 @@
             {{ Item.name }}
           </nuxt-link>
         </v-tab>
+        <v-tab>
+          <nuxt-link
+            to="/users/account"
+            class="text-decoration-none grey--text text-h6"
+          >
+            <v-icon>mdi-account-circle</v-icon>
+            <span class="item-space"> </span>
+            ACCOUNT
+          </nuxt-link>
+        </v-tab>
+      </v-tabs>
+      <!-- ログインしていない -->
+      <v-tabs
+        v-if="!this.$auth.loggedIn"
+        background-color="transparent"
+        color="red"
+        right
+      >
+        <v-tab class="text-h6">
+          <nuxt-link to="/" class="text-decoration-none grey--text">
+            <v-icon>mdi-star</v-icon>
+            <span class="item-space"> </span>
+            SERVICE
+          </nuxt-link>
+        </v-tab>
+        <v-tab class="ml-4 text-h6">
+          <nuxt-link to="/users/login" class="text-decoration-none grey--text">
+            <v-icon>mdi-account-circle</v-icon>
+            <span class="item-space"> </span>
+            LOGIN
+          </nuxt-link>
+        </v-tab>
+        <v-btn
+          color="primary"
+          elevation="2"
+          to="/users/signup"
+          large
+          class="mt-3 mx-4"
+          >無料会員登録</v-btn
+        >
       </v-tabs>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" fixed temporary>
+    <!-- レスポンシブデザイン -->
+    <!-- ログイン済み -->
+    <v-navigation-drawer
+      v-if="this.$auth.loggedIn"
+      v-model="drawer"
+      fixed
+      temporary
+    >
       <v-list nav dense>
         <v-list-item-group>
           <v-list-item v-for="(Item, index) in Items" :key="index">
@@ -21,6 +75,45 @@
               {{ Item.name }}
             </nuxt-link>
           </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+    <!-- ログインしていない -->
+    <v-navigation-drawer
+      v-if="!this.$auth.loggedIn"
+      v-model="drawer"
+      fixed
+      temporary
+    >
+      <v-list nav dense>
+        <v-list-item-group>
+          <v-list-item>
+            <nuxt-link to="/" class="text-decoration-none grey--text">
+              <v-icon>mdi-star</v-icon>
+              <span class="item-space"> </span>
+              SERVICE
+            </nuxt-link>
+          </v-list-item>
+          <v-list-item>
+            <nuxt-link
+              to="/users/login"
+              class="text-decoration-none grey--text"
+            >
+              <v-icon>mdi-account-circle</v-icon>
+              <span class="item-space"> </span>
+              LOGIN
+            </nuxt-link>
+          </v-list-item>
+          <!-- <v-list-item>
+            <nuxt-link
+              to="/users/signup"
+              class="text-decoration-none grey--text"
+            >
+              <v-icon>mdi-account-circle</v-icon>
+              <span class="item-space"> </span>
+              新規会員登録
+            </nuxt-link>
+          </v-list-item> -->
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>

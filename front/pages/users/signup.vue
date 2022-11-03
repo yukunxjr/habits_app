@@ -1,110 +1,24 @@
-<!-- <template>
-  <v-container>
-    <v-card width="500px" class="mx-auto mt-5">
-      <v-card-title>
-        <h1 class="display-1">新規登録</h1>
-      </v-card-title>
-      <v-card-text>
-        <v-form ref="form" lazy-validation>
-          <v-text-field
-            v-model="user.name"
-            prepend-icon="mdi-name"
-            label="名前"
-          />
-          <v-text-field
-            v-model="user.email"
-            prepend-icon="mdi-email"
-            label="メールアドレス"
-          />
-          <v-text-field
-            v-model="user.password"
-            prepend-icon="mdi-lock"
-            append-icon="mdi-eye-off"
-            label="パスワード"
-            type="password"
-          />
-          <v-text-field
-            v-model="user.password_confirmation"
-            prepend-icon="mdi-lock"
-            append-icon="mdi-eye-off"
-            label="パスワード確認"
-            type="password"
-          />
-          <v-card-actions>
-            <v-btn color="blue darken-3" class="white--text" @click="signup">
-              新規登録
-            </v-btn>
-          </v-card-actions>
-        </v-form>
-      </v-card-text>
-    </v-card>
-  </v-container>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      user: {
-        name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-      },
-    };
-  },
-  methods: {
-    async signup() {
-      try {
-        await this.$axios.post("/api/v1/auth", {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-          password_confirmation: this.password_confirmation,
-        });
-        await this.$auth.loginWith("local", {
-          data: {
-            password: this.password,
-            email: this.email,
-          },
-        });
-      } catch (e) {
-        this.error = e.response.data.errors.full_messages;
-      }
-    },
-  },
-};
-</script> -->
-
 <template>
   <v-container>
-    <v-card width="500px" class="mx-auto mt-5">
+    <v-card width="500px" class="mx-auto mt-10">
       <v-card-title>
         <h1 class="display-1">新規登録</h1>
       </v-card-title>
-
-      <!-- <Notification :message="error" v-if="error" class="mb-4 pb-3" /> -->
-      <!-- <v-form ref="form" lazy-validation>
-  <v-text-field
-    v-model="user.name"
-    prepend-icon="mdi-name"
-    label="名前"
-  /> -->
       <v-card-text>
-        <v-form @submit.prevent="signup">
-          <!-- <b-form-group label="名前:"> -->
+        <v-form>
           <v-text-field
             v-model="name"
-            prepend-icon="mdi-name"
+            prepend-icon="mdi-account"
             label="名前"
             type="text"
+            class="mt-3"
           />
-
           <v-text-field
             v-model="email"
             prepend-icon="mdi-email"
             label="メールアドレス"
             type="email"
+            class="mt-3"
           />
           <v-text-field
             v-model="password"
@@ -112,6 +26,7 @@ export default {
             append-icon="mdi-eye-off"
             label="パスワード"
             type="password"
+            class="mt-3"
           />
           <v-text-field
             v-model="password_confirmation"
@@ -119,10 +34,21 @@ export default {
             append-icon="mdi-eye-off"
             label="パスワード確認"
             type="password"
+            class="mt-3"
           />
-          <v-btn color="blue darken-3" block class="white--text">送信</v-btn>
-          <!-- <b-button block type="submit" variant="primary">Submit</b-button> -->
+          <v-btn
+            color="blue darken-3"
+            block
+            class="white--text mt-3"
+            @click="signup"
+          >
+            送信
+          </v-btn>
         </v-form>
+      </v-card-text>
+      <v-card-text>
+        アカウントをお持ちの方は
+        <nuxt-link to="/users/login">こちら</nuxt-link>へ
       </v-card-text>
     </v-card>
   </v-container>
@@ -142,7 +68,7 @@ export default {
   methods: {
     async signup() {
       try {
-        await this.$axios.post("/api/v1/auth", {
+        await this.$axios.post("http://localhost:3000/api/v1/auth", {
           name: this.name,
           email: this.email,
           password: this.password,
@@ -150,8 +76,8 @@ export default {
         });
         await this.$auth.loginWith("local", {
           data: {
-            password: this.password,
             email: this.email,
+            password: this.password,
           },
         });
       } catch (e) {
@@ -163,3 +89,22 @@ export default {
 </script>
 
 <style></style>
+<!-- const res = await axios.post('http://localhost:3000/auth', {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            password_confirmation: this.passwordConfirmation
+            }
+            )
+            if (!res) {
+                throw new Error('アカウントを登録できませんでした')
+            }
+            if (!this.error) {
+              setItem(res.headers,res.data.data.name)
+              this.$emit('redirectToChatroom')
+            }
+            console.log({ res })
+            return res
+        } catch (error) {
+            this.error = 'アカウントを登録できませんでした'
+        } -->
