@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card width="400px" class="mx-auto mt-5">
+    <v-card width="500px" height="400px" class="mx-auto mt-15">
       <v-card-title>
         <h1 class="display-1">ログイン</h1>
       </v-card-title>
@@ -11,6 +11,7 @@
             label="メールアドレス"
             type="email"
             v-model="email"
+            class="mt-5"
           />
           <v-text-field
             prepend-icon="mdi-lock"
@@ -18,12 +19,13 @@
             label="パスワード"
             v-model="password"
             type="password"
+            class="mt-5"
           />
           <v-card-actions>
             <v-btn
               block
               color="light-green darken-1"
-              class="white--text"
+              class="white--text mt-5"
               type="submit"
             >
               ログイン
@@ -31,6 +33,11 @@
           </v-card-actions>
         </v-form>
       </v-card-text>
+      <v-card-text>
+        アカウントをお持ちでない方は
+        <nuxt-link to="/users/signup">こちら</nuxt-link>へ
+      </v-card-text>
+
       <!-- <Notification :message="error" v-if="error" class="mb-4 pb-3" /> -->
     </v-card>
   </v-container>
@@ -40,8 +47,8 @@
 export default {
   data: function () {
     return {
-      email: "",
-      password: "",
+      email: "test5@test.com",
+      password: "password",
       error: null,
     };
   },

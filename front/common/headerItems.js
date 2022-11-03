@@ -10,10 +10,11 @@ export default {
       url: "/memo",
       icon: "mdi-animation",
     },
-    {
-      name: "LOGIN",
-      url: "/users/login",
-    },
+    // {
+    //   name: "LOGIN",
+    //   url: "/users/login",
+    //   icon: "mdi-account-circle",
+    // },
     {
       name: "TAIMER",
       url: "/timer",
@@ -24,10 +25,10 @@ export default {
       url: "#",
       icon: "mdi-certificate",
     },
-    {
-      name: "ACCOUNT",
-      url: "/users/account",
-      icon: "mdi-account-circle",
-    },
+    // {
+    //   name: "ACCOUNT",
+    //   url: "/users/account",
+    //   icon: "mdi-account-circle",
+    // },
   ],
 };
