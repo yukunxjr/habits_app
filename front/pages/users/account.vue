@@ -49,11 +49,13 @@ import Profile from "@/components/UserProfile.vue";
 import Email from "@/components/UserEmail.vue";
 import Drawal from "@/components/UserDrawal.vue";
 import Password from "@/components/UserPassword.vue";
+
 export default {
+  middleware: "auth",
   data: () => ({
     Items: [
       { name: "プロフィール", components: "Profile" },
-      { name: "メールアドレス", components: "Email" },
+      { name: "アカウント編集", components: "Email" },
       { name: "パスワード", components: "Password" },
       { name: "退会", components: "drawal" },
     ],
