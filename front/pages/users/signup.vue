@@ -58,10 +58,10 @@
 export default {
   data: function () {
     return {
-      name: "",
-      email: "",
-      password: "",
-      password_confirmation: "",
+      name: "test",
+      email: "test1@test.com",
+      password: "password",
+      password_confirmation: "password",
       error: null,
     };
   },
@@ -89,22 +89,3 @@ export default {
 </script>
 
 <style></style>
-<!-- const res = await axios.post('http://localhost:3000/auth', {
-            name: this.name,
-            email: this.email,
-            password: this.password,
-            password_confirmation: this.passwordConfirmation
-            }
-            )
-            if (!res) {
-                throw new Error('アカウントを登録できませんでした')
-            }
-            if (!this.error) {
-              setItem(res.headers,res.data.data.name)
-              this.$emit('redirectToChatroom')
-            }
-            console.log({ res })
-            return res
-        } catch (error) {
-            this.error = 'アカウントを登録できませんでした'
-        } -->
