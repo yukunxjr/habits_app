@@ -4,14 +4,18 @@
       <v-card-title>
         <h1 class="display-1">新規登録</h1>
       </v-card-title>
+      <v-spacer v-if="!error"></v-spacer>
+      <v-alert dense outlined type="error" v-if="error">
+        登録に失敗しました。お手数ですが再度お試しください。
+      </v-alert>
       <v-card-text>
-        <v-form>
+        <v-form lazy-validation>
           <v-text-field
             v-model="name"
             prepend-icon="mdi-account"
             label="名前"
             type="text"
-            class="mt-3"
+            :rules="[rules.nameLength, rules.required]"
           />
           <v-text-field
             v-model="email"
@@ -19,6 +23,7 @@
             label="メールアドレス"
             type="email"
             class="mt-3"
+            :rules="[rules.required, rules.email]"
           />
           <v-text-field
             v-model="password"
@@ -27,6 +32,7 @@
             label="パスワード"
             type="password"
             class="mt-3"
+            :rules="[rules.required, rules.passwordLength]"
           />
           <v-text-field
             v-model="password_confirmation"
@@ -35,6 +41,7 @@
             label="パスワード確認"
             type="password"
             class="mt-3"
+            :rules="[rules.required]"
           />
           <v-btn
             color="blue darken-3"
@@ -62,7 +69,17 @@ export default {
       email: "test1@test.com",
       password: "password",
       password_confirmation: "password",
+      valid: true,
       error: null,
+      rules: {
+        required: (value) => !!value || "入力してください",
+        nameLength: (value) =>
+          value.length <= 20 || "20文字以内で入力してください",
+        email: (value) =>
+          /.+@.+\..+/.test(value) || "メールアドレスを正しく入力してください",
+        passwordLength: (value) =>
+          value.length >= 6 || "パスワードは6文字以上で入力してください",
+      },
     };
   },
   methods: {

@@ -1,8 +1,8 @@
 export default {
   Items: [
     {
-      name: "SERVICE",
-      url: "/",
+      name: "HOME",
+      url: "/home",
       icon: "mdi-star",
     },
     {
