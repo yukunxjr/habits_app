@@ -70,7 +70,7 @@ export default {
       login: "/users/signin", //middleware:authを設定したURLにアクセスがあった場合の、リダイレクト先。
       logout: "/", //ログアウト後のリダイレクト先
       callback: false,
-      home: "/users/account", //ログイン後のリダイレクト先。
+      home: "/home", //ログイン後のリダイレクト先。
     },
     strategies: {
       local: {

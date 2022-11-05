@@ -1,3 +1,3 @@
 <template>
-  <div>ホーム</div>
+  <div>welcome ページ</div>
 </template>

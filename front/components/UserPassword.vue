@@ -12,18 +12,20 @@
             append-icon="mdi-eye-off"
             label="現在のパスワード"
             type="password"
+            :rules="[rules.required]"
           />
         </v-card-text>
       </v-col>
       <v-col md="5" offset-md="2">
         <v-card-text>
-          <v-form ref="form">
+          <v-form ref="form" lazy-validation>
             <v-text-field
               v-model="user.password"
               prepend-icon="mdi-lock"
               append-icon="mdi-eye-off"
               label="新しいパスワード"
               type="password"
+              :rules="[rules.required, rules.passwordLength]"
             />
           </v-form>
         </v-card-text>
@@ -37,6 +39,7 @@
               append-icon="mdi-eye-off"
               label="パスワード確認"
               type="password"
+              :rules="[rules.required]"
             />
           </v-form>
         </v-card-text>
@@ -58,14 +61,17 @@
 
 <script>
 export default {
-  name: "App",
-
   data() {
     return {
       oldPassword: "",
       user: {
         password: "",
         password_confirmation: "",
+      },
+      rules: {
+        required: (value) => !!value || "入力してください",
+        passwordLength: (value) =>
+          value.length >= 6 || "パスワードは6文字以上で入力してください",
       },
     };
   },

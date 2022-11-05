@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: "timer",
+  middleware: "auth",
   data() {
     return {
       min: 59,

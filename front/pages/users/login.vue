@@ -4,6 +4,10 @@
       <v-card-title>
         <h1 class="display-1">ログイン</h1>
       </v-card-title>
+      <v-alert dense outlined type="error" v-if="error">
+        ログイン情報が正しくありません。再度お試しください。
+      </v-alert>
+      <v-spacer v-if="!error"></v-spacer>
       <v-card-text>
         <v-form @submit.prevent="login">
           <v-text-field
@@ -11,7 +15,6 @@
             label="メールアドレス"
             type="email"
             v-model="email"
-            class="mt-5"
           />
           <v-text-field
             prepend-icon="mdi-lock"
@@ -37,8 +40,6 @@
         アカウントをお持ちでない方は
         <nuxt-link to="/users/signup">こちら</nuxt-link>へ
       </v-card-text>
-
-      <!-- <Notification :message="error" v-if="error" class="mb-4 pb-3" /> -->
     </v-card>
   </v-container>
 </template>

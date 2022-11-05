@@ -6,11 +6,12 @@
     <v-row class="my-15" no-gutters>
       <v-col md="5" offset-md="2">
         <v-card-text>
-          <v-form ref="form">
+          <v-form ref="form" lazy-validation>
             <v-text-field
               v-model="user.name"
               prepend-icon="mdi-account"
               label="名前"
+              :rules="[rules.nameLength, rules.required]"
             />
           </v-form>
         </v-card-text>
@@ -22,6 +23,7 @@
               v-model="user.email"
               prepend-icon="mdi-email"
               label="メールアドレス"
+              :rules="[rules.required, rules.email]"
             />
           </v-form>
         </v-card-text>
@@ -43,13 +45,18 @@
 
 <script>
 export default {
-  name: "App",
-
   data() {
     return {
       user: {
         name: "",
         email: "",
+      },
+      rules: {
+        required: (value) => !!value || "入力してください",
+        nameLength: (value) =>
+          value.length <= 20 || "20文字以内で入力してください",
+        email: (value) =>
+          /.+@.+\..+/.test(value) || "メールアドレスを正しく入力してください",
       },
     };
   },

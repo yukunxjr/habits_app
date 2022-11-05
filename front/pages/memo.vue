@@ -1,121 +1,54 @@
 <template>
-  <v-card class="my-16 mx-auto pa-5" max-width="70%" outlined>
-    <v-card-title>TIMER</v-card-title>
-    <v-card-text>
-      <v-progress-circular
-        :rotate="-90"
-        :size="250"
-        :width="15"
-        :value="100"
-        color="primary"
-        class="text-h2"
-      >
-        h
-      </v-progress-circular>
-
-      <v-progress-circular
-        :rotate="-90"
-        :size="250"
-        :width="15"
-        :value="100"
-        color="red"
-        class="text-h2"
-      >
-        {{ min }}m
-      </v-progress-circular>
-
-      <v-progress-circular
-        :rotate="-90"
-        :size="250"
-        :width="15"
-        :value="value"
-        color="pink"
-        class="text-h2"
-      >
-        {{ sec }}s
-      </v-progress-circular>
-    </v-card-text>
-    <v-card-actions justify="center">
-      <v-btn @click="start" v-if="!timerOn">Start</v-btn>
-      <v-btn @click="stop" v-if="timerOn">Stop</v-btn>
-    </v-card-actions>
-  </v-card>
+  <div id="clock">
+    <p class="date">{{ date }}</p>
+    <p class="time">{{ time }}</p>
+    <p class="text">DIGITAL CLOCK with Vue.js</p>
+  </div>
 </template>
 
 <script>
-// import Vue from "vue";
-// import CircularCountDownTimer from "vue-circular-count-down-timer";
-// Vue.use(CircularCountDownTimer);
-export default {
-  data() {
-    return {
-      interval: {},
-      value: 100,
-      min: 59,
-      sec: 59,
-      timerOn: false,
-      timerObj: null,
-    };
-  },
-  methods: {
-    count: function () {
-      if (this.sec <= 0 && this.min >= 1) {
-        this.min--;
-        this.sec = 59;
-      } else if (this.sec <= 0 && this.min <= 0) {
-        this.complete();
-      } else {
-        this.sec--;
-      }
-    },
-
-    start: function () {
-      let self = this;
-      this.timerObj = setInterval(function () {
-        self.count();
-      }, 1000);
-      this.interval = setInterval(() => {
-        if (this.value === 0) {
-          return (this.value = 100);
-        } else {
-          this.value -= 1.66666666667;
-        }
-      }, 1000);
-      this.timerOn = true; //timerがONであることを状態として保持
-    },
-
-    stop: function () {
-      clearInterval(this.timerObj);
-      this.timerOn = false; //timerがOFFであることを状態として保持
-    },
-
-    complete: function () {
-      clearInterval(this.timerObj);
-    },
-  },
-  beforeDestroy() {
-    clearInterval(this.interval);
-  },
-  mounted() {},
-  computed: {
-    formatTime: function () {
-      let timeStrings = [this.min.toString(), this.sec.toString()].map(
-        function (str) {
-          if (str.length < 2) {
-            return "0" + str;
-          } else {
-            return str;
-          }
-        }
-      );
-      return timeStrings[0] + ":" + timeStrings[1];
-    },
-  },
-};
+date: {
+}
 </script>
 
-<style scoped>
-.v-progress-circular {
-  margin: 1rem;
+<style lang="scss" scoped>
+html,
+body {
+  height: 100%;
+}
+body {
+  background: #0f3854;
+  background: radial-gradient(ellipse at center, #0a2e38 0%, #000000 70%);
+  background-size: 100%;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+#clock {
+  font-family: "Share Tech Mono", monospace;
+  color: #ffffff;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #daf6ff;
+  text-shadow: 0 0 20px rgba(10, 175, 230, 1), 0 0 20px rgba(10, 175, 230, 0);
+
+  .time {
+    letter-spacing: 0.05em;
+    font-size: 80px;
+    padding: 5px 0;
+  }
+  .date {
+    letter-spacing: 0.1em;
+    font-size: 24px;
+  }
+  .text {
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    padding: 20px 0 0;
+  }
 }
 </style>
