@@ -20,7 +20,7 @@
         </v-tab>
         <v-tab>
           <nuxt-link
-            to="/users/account"
+            to="/users/:id?"
             class="text-decoration-none grey--text text-h6"
           >
             <v-icon>mdi-account-circle</v-icon>
@@ -104,16 +104,6 @@
               LOGIN
             </nuxt-link>
           </v-list-item>
-          <!-- <v-list-item>
-            <nuxt-link
-              to="/users/signup"
-              class="text-decoration-none grey--text"
-            >
-              <v-icon>mdi-account-circle</v-icon>
-              <span class="item-space"> </span>
-              新規会員登録
-            </nuxt-link>
-          </v-list-item> -->
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
