@@ -64,7 +64,17 @@ export default {
 
   axios: {
     baseURL: "http://localhost:3000/",
+    proxy: true,
   },
+  proxy: {
+    "/api/v1/": {
+      target: "http://localhost:3000/",
+      pathRewrite: {
+        "^/api/v1/": "/api/v1/",
+      },
+    },
+  },
+
   auth: {
     redirect: {
       login: "/users/signin", //middleware:authを設定したURLにアクセスがあった場合の、リダイレクト先。
