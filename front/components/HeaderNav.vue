@@ -20,7 +20,7 @@
         </v-tab>
         <v-tab>
           <nuxt-link
-            to="/users/:id?"
+            to="/users/account"
             class="text-decoration-none grey--text text-h6"
           >
             <v-icon>mdi-account-circle</v-icon>

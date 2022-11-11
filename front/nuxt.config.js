@@ -38,7 +38,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/axios", "@nuxtjs/auth"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/auth", "@nuxtjs/proxy"],
 
   /*
    ** vuetify module configuration
@@ -64,11 +64,11 @@ export default {
 
   axios: {
     baseURL: "http://localhost:3000/",
-    proxy: true,
+    // proxy: true,
   },
   proxy: {
     "/api/v1/": {
-      target: "http://localhost:3000/",
+      target: "http://localhost:3000",
       pathRewrite: {
         "^/api/v1/": "/api/v1/",
       },
@@ -80,7 +80,7 @@ export default {
       login: "/users/signin", //middleware:authを設定したURLにアクセスがあった場合の、リダイレクト先。
       logout: "/", //ログアウト後のリダイレクト先
       callback: false,
-      home: "/users/home", //ログイン後のリダイレクト先。
+      home: "/home", //ログイン後のリダイレクト先。
     },
     strategies: {
       local: {

@@ -6,8 +6,8 @@ export default {
       icon: "mdi-star",
     },
     {
-      name: "MEMO",
-      url: "/memo",
+      name: "NOTE",
+      url: "/note",
       icon: "mdi-animation",
     },
     // {

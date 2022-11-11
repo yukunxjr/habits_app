@@ -8,11 +8,11 @@
         <v-card-text v-if="error.statusCode === 404" class="text-center">
           {{ pageNotFound }}
         </v-card-text>
-        <v-card-text v-else>
+        <v-card-text v-else class="text-center">
           {{ otherError }}
         </v-card-text>
         <v-card-actions class="justify-center">
-          <NuxtLink to="/home" class="text-decoration-none grey--text">
+          <NuxtLink to="/" class="text-decoration-none grey--text">
             <v-icon>mdi-home</v-icon>
           </NuxtLink>
         </v-card-actions>
