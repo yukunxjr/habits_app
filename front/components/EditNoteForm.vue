@@ -4,7 +4,7 @@
       <v-card-text>
         <v-form>
           <v-text-field v-model="title" label="title" />
-          <v-text-field v-model="excerpt" label="excerpt" />
+          <v-text-field v-model="body" label="body" />
         </v-form>
         <v-card-actions>
           <v-btn class="mx-2" fab dark color="teal" @click="editNote">
@@ -28,7 +28,7 @@ export default {
     return {
       id: this.note.id,
       title: this.note.title,
-      excerpt: this.note.excerpt,
+      body: this.note.body,
     };
   },
   methods: {
@@ -36,7 +36,7 @@ export default {
       this.$axios
         .$put(`/api/v1/notes/${this.id}`, {
           title: this.title,
-          excerpt: this.excerpt,
+          body: this.body,
         })
         .then((res) => {
           const notes = this.$parent.notes.map((l) => {
