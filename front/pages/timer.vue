@@ -1,10 +1,8 @@
 <template>
   <v-card class="my-16 mx-auto pa-5" max-width="70%" outlined>
     <v-dialog v-model="dialog" class="my-16 mx-auto pa-5" max-width="40%">
-      <TimerDialog
-        @click_submit="return_data"
-        @click_cancel="cancel"
-      ></TimerDialog>
+      <TimerDialog @click_submit="return_data" @click_cancel="cancel">
+      </TimerDialog>
     </v-dialog>
     <v-card-title>TIMER</v-card-title>
     <v-card-text>
