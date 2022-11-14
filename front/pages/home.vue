@@ -1,10 +1,11 @@
 <template>
-  <v-app>
-    <v-navigation-drawer absolute permanent left>
+  <v-app class="mt-1">
+    <v-navigation-drawer permanent left>
       <template v-slot:prepend>
         <v-list-item two-line>
-          <v-btn><v-icon>mdi-trash-can</v-icon></v-btn>
-          <v-btn><v-icon>mdi-folder-plus-outline</v-icon></v-btn>
+          <v-list-item-title class="title"> Note </v-list-item-title>
+          <v-btn icon><v-icon>mdi-trash-can</v-icon></v-btn>
+          <v-btn icon><v-icon>mdi-folder-plus-outline</v-icon></v-btn>
         </v-list-item>
       </template>
 
@@ -21,7 +22,10 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-main></v-main>
+    <v-content>
+      <div>macについて</div>
+      <div>macとは</div>
+    </v-content>
   </v-app>
 </template>
 
