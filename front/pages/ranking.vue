@@ -9,7 +9,14 @@
                 <v-list-item two-line>
                   <v-list-item-title class="title"> MyNote </v-list-item-title>
                   <v-btn icon><v-icon>mdi-trash-can</v-icon></v-btn>
-                  <v-btn icon><v-icon>mdi-folder-plus-outline</v-icon></v-btn>
+                  <v-dialog v-model="dialog" width="800px">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn icon v-bind="attrs" v-on="on">
+                        <v-icon>mdi-folder-plus-outline</v-icon>
+                      </v-btn>
+                    </template>
+                    <CreateNote @click_cancel="cancel" @click_reload="reload" />
+                  </v-dialog>
                 </v-list-item>
 
                 <v-divider class="my-2"></v-divider>
@@ -61,11 +68,13 @@
 
 <script>
 import EditNote from "@/components/Note/EditNote.vue";
+import CreateNote from "@/components/Note/CreateNote.vue";
 export default {
-  components: { EditNote },
+  components: { EditNote, CreateNote },
   data() {
     return {
       notes: [],
+      dialog: false,
       currentNoteTitle: "タイトル",
       currentNoteBody: "内容",
     };
@@ -78,6 +87,13 @@ export default {
     currentNoteId(title, body) {
       this.currentNoteTitle = title;
       this.currentNoteBody = body;
+    },
+    cancel() {
+      this.dialog = false;
+    },
+    reload() {
+      location.reload();
+      this.dialog = false;
     },
   },
 };

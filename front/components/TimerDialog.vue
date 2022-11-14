@@ -76,7 +76,7 @@ export default {
         hour: "",
         min: "",
         sec: "",
-        saund: "",
+        saund: "アラーム１",
       },
       hours: [...Array(25)].map((_, i) => i),
       minutes: [...Array(12)].map((_, i) => i * 5),
