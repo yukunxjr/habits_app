@@ -22,7 +22,7 @@ export default {
     },
     {
       name: "RANKING",
-      url: "#",
+      url: "/ranking",
       icon: "mdi-certificate",
     },
     // {
