@@ -5,9 +5,9 @@
         <v-row>
           <v-col cols="3">
             <v-sheet>
-              <v-list color="transparent">
+              <v-list color="transparent" class="list">
                 <v-list-item two-line>
-                  <v-list-item-title class="title"> MyNote </v-list-item-title>
+                  <v-list-title class="title"> MyNote </v-list-title>
                   <v-btn icon><v-icon>mdi-trash-can</v-icon></v-btn>
                   <v-dialog v-model="dialog" width="800px">
                     <template v-slot:activator="{ on, attrs }">
@@ -18,7 +18,6 @@
                     <CreateNote @click_cancel="cancel" @click_reload="reload" />
                   </v-dialog>
                 </v-list-item>
-
                 <v-divider class="my-2"></v-divider>
                 <v-list-item
                   v-for="note in notes"
@@ -98,3 +97,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.list {
+  height: 80vh;
+  overflow-y: auto;
+}
+</style>
