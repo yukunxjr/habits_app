@@ -8,6 +8,7 @@
               <v-list color="transparent" class="list">
                 <v-list-item two-line>
                   <v-list-title class="title"> MyNote </v-list-title>
+                  <v-spacer></v-spacer>
                   <v-btn icon><v-icon>mdi-trash-can</v-icon></v-btn>
                   <v-dialog v-model="dialog" width="800px">
                     <template v-slot:activator="{ on, attrs }">
@@ -22,7 +23,7 @@
                 <v-list-item
                   v-for="note in notes"
                   :key="note.id"
-                  @click="currentNoteId(note.title, note.body)"
+                  @click="currentNote(note.id, note.title, note.body)"
                   two-line
                 >
                   <v-list-item-content>
@@ -43,16 +44,23 @@
               <v-container>
                 <v-card-title>{{ currentNoteTitle }}</v-card-title>
                 <v-divider></v-divider>
-                <v-card-text>{{ currentNoteBody }}</v-card-text>
+                <v-card-text>
+                  {{ currentNoteBody }}
+                </v-card-text>
               </v-container>
 
               <!-- <EditNote /> -->
             </v-card>
             <v-row class="justify-end mt-3">
-              <v-btn class="mr-6">
-                <v-icon large>mdi-pencil-circle-outline</v-icon>
-                編集
-              </v-btn>
+              <v-dialog v-model="dialogEdit" width="800px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn class="mr-6" icon v-bind="attrs" v-on="on">
+                    <v-icon large>mdi-pencil-circle-outline</v-icon>
+                  </v-btn>
+                </template>
+                <EditNote />
+              </v-dialog>
+
               <v-btn>
                 <v-icon large>mdi-close-circle-outline</v-icon>
                 削除
@@ -74,6 +82,8 @@ export default {
     return {
       notes: [],
       dialog: false,
+      dialogEdit: false,
+      currentNoteId: "",
       currentNoteTitle: "タイトル",
       currentNoteBody: "内容",
     };
@@ -83,7 +93,8 @@ export default {
     return { notes: data };
   },
   methods: {
-    currentNoteId(title, body) {
+    currentNote(id, title, body) {
+      this.currentNoteId = id;
       this.currentNoteTitle = title;
       this.currentNoteBody = body;
     },
@@ -100,7 +111,7 @@ export default {
 
 <style scoped>
 .list {
-  height: 80vh;
+  height: 70vh;
   overflow-y: auto;
 }
 </style>
