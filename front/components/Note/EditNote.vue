@@ -16,7 +16,7 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <!-- <v-btn color="primary" text @click="cancel"> キャンセル </v-btn> -->
+        <v-btn color="primary" text @click="cancel"> キャンセル </v-btn>
         <v-btn color="primary" text @click="editNote"> 保存 </v-btn>
       </v-card-actions>
     </v-card-text>
@@ -33,67 +33,33 @@ export default {
   },
   data() {
     return {
-      id: this.currentNoteId,
-      title: this.currentNoteTitle,
-      body: this.currentNoteBody,
+      id: this.note.id,
+      title: this.note.title,
+      body: this.note.body,
     };
   },
-  // methods: {
-  //   editNote() {
-  //     this.$axios
-  //       .$put(`/api/v1/notes/${this.id}`, {
-  //         title: this.currentNoteTitle,
-  //         body: this.currentNoteBody,
-  //       })
-  //       .then((res) => {
-  //         const notes = this.$parent.notes.map((l) => {
-  //           return l.id === this.id ? res : l;
-  //         });
-  //         this.$parent.notes = notes;
-  //         this.$emit("set");
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  // },
+  methods: {
+    editNote() {
+      this.$axios
+        .$put(`/api/v1/notes/${this.id}`, {
+          title: this.title,
+          body: this.body,
+        })
+        .then((res) => {
+          const notes = this.$parent.notes.map((l) => {
+            return l.id === this.id ? res : l;
+          });
+          this.$parent.notes = notes;
+          this.$emit("set");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      this.$emit("click_reload");
+    },
+    cancel() {
+      this.$emit("click_cancel");
+    },
+  },
 };
-
-// ss
-// addEventListenera
-
-// addEventListeneraa
-
-// addEventListeneraaa
-
-// addEventListeners
-
-// SpeechRecognitionResultLists
-// screen
-// SpeechRecognitionResultList
-
-// export default {
-//   data() {
-//     return {
-//       title: "",
-//       body: "",
-//     };
-//   },
-//   methods: {
-//     addNote() {
-//       this.$axios
-//         .$post("/api/v1/notes", { title: this.title, body: this.body })
-//         .then((res) => {
-//           this.$parent.notes.push(res);
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//         });
-//       this.$emit("click_reload");
-//     },
-//     cancel() {
-//       this.$emit("click_cancel");
-//     },
-//   },
-// };
 </script>

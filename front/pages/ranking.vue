@@ -7,7 +7,7 @@
             <v-sheet>
               <v-list color="transparent" class="list">
                 <v-list-item two-line>
-                  <v-list-title class="title"> MyNote </v-list-title>
+                  <v-list-item-title class="title"> MyNote </v-list-item-title>
                   <v-spacer></v-spacer>
                   <v-btn icon><v-icon>mdi-trash-can</v-icon></v-btn>
                   <v-dialog v-model="dialog" width="800px">
@@ -23,7 +23,7 @@
                 <v-list-item
                   v-for="note in notes"
                   :key="note.id"
-                  @click="currentNote(note.id, note.title, note.body)"
+                  @click="setNote(note)"
                   two-line
                 >
                   <v-list-item-content>
@@ -42,25 +42,28 @@
           <v-col>
             <v-card min-height="70vh">
               <v-container>
-                <v-card-title>{{ currentNoteTitle }}</v-card-title>
+                <v-card-title>
+                  {{ currentNote.title || "タイトル" }}
+                </v-card-title>
                 <v-divider></v-divider>
                 <v-card-text>
-                  {{ currentNoteBody }}
+                  {{ currentNote.body || "内容" }}
                 </v-card-text>
               </v-container>
-
-              <!-- <EditNote /> -->
             </v-card>
             <v-row class="justify-end mt-3">
-              <v-dialog v-model="dialogEdit" width="800px">
+              <v-dialog v-model="dialogEdit" width="800px" v-if="editOn">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn class="mr-6" icon v-bind="attrs" v-on="on">
                     <v-icon large>mdi-pencil-circle-outline</v-icon>
                   </v-btn>
                 </template>
-                <EditNote />
+                <EditNote
+                  :note="currentNote"
+                  @click_cancel="cancel"
+                  @click_reload="reload"
+                />
               </v-dialog>
-
               <v-btn>
                 <v-icon large>mdi-close-circle-outline</v-icon>
                 削除
@@ -83,9 +86,8 @@ export default {
       notes: [],
       dialog: false,
       dialogEdit: false,
-      currentNoteId: "",
-      currentNoteTitle: "タイトル",
-      currentNoteBody: "内容",
+      currentNote: "",
+      editOn: false,
     };
   },
   async asyncData({ $axios }) {
@@ -93,17 +95,19 @@ export default {
     return { notes: data };
   },
   methods: {
-    currentNote(id, title, body) {
-      this.currentNoteId = id;
-      this.currentNoteTitle = title;
-      this.currentNoteBody = body;
+    setNote(note) {
+      this.currentNote = note;
+      this.editOn = true;
+      console.log(note);
     },
     cancel() {
       this.dialog = false;
+      this.dialogEdit = false;
     },
     reload() {
       location.reload();
       this.dialog = false;
+      this.dialogEdit = false;
     },
   },
 };
