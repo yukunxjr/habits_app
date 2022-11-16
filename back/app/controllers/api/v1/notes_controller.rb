@@ -2,8 +2,7 @@ class Api::V1::NotesController < ApplicationController
     before_action :set_note, only: %i[show destroy update]
 
     def index
-        # notes = note.all.order(:id)
-        @notes = Note.all
+        @notes =  Note.undiscarded.where(user_id: current_user)
         render json: @notes
     end
 
@@ -30,6 +29,29 @@ class Api::V1::NotesController < ApplicationController
     
     def destroy
       if @note.destroy
+        render json: @note
+      else
+        render json: @note.errors
+      end
+    end
+
+    def trashcan
+      @del = note.discarded.where(user_id: current_user)
+      render json: @del
+    end
+
+    def discard
+      if @note.discard
+        render json: @note
+      else
+        render json: @note.errors
+      end
+    end
+
+    end
+
+    def restoration
+      if @note.undiscard(note_params)
         render json: @note
       else
         render json: @note.errors
