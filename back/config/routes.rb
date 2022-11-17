@@ -7,14 +7,14 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
         registrations: 'auth/registrations'
       }
-      resources :users, only:[:show]
       namespace :auth do
         resources :sessions, only: %i[index]
       end
+      resources :users, only: %i[:show :index]
       resources :notes, only: %i[index show create update destroy]
-        get 'trashcan' => 'notes#trashcan'
-        post 'notes/:id/restoration' => 'notes#restoration'
-        delete 'notes/:id/discard' => 'notes#discard'
+      get 'trashcan' => 'notes#trashcan'
+      post 'notes/:id/restoration' => 'notes#restoration'
+      delete 'notes/:id/discard' => 'notes#discard'
     end
   end
 end
