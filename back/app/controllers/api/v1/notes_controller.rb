@@ -1,5 +1,5 @@
 class Api::V1::NotesController < ApplicationController
-    before_action :set_note, only: %i[show destroy update]
+    before_action :set_note, only: %i[show destroy update discard restoration]
 
     def index
         @notes =  Note.undiscarded.where(user_id: current_user)
@@ -36,8 +36,8 @@ class Api::V1::NotesController < ApplicationController
     end
 
     def trashcan
-      @del = note.discarded.where(user_id: current_user)
-      render json: @del
+      @notes =  Note.discarded.where(user_id: current_user)
+      render json: @notes
     end
 
     def discard
@@ -48,10 +48,9 @@ class Api::V1::NotesController < ApplicationController
       end
     end
 
-    end
-
     def restoration
-      if @note.undiscard(note_params)
+      @note = Note.find(params[:id])
+      if @note.undiscard
         render json: @note
       else
         render json: @note.errors
@@ -67,5 +66,9 @@ class Api::V1::NotesController < ApplicationController
     def note_params
       params.require(:note).permit(:body, :title).merge(user_id: current_user.id)
     end
+
+    # def restoration_params
+    #   params.permit(:body, :title, :id)
+    # end
 end
 

@@ -12,10 +12,9 @@ Rails.application.routes.draw do
         resources :sessions, only: %i[index]
       end
       resources :notes, only: %i[index show create update destroy]
-      get 'trashcan/:id' => 'notes#trashcan'
-      post 'restoration/:id' => 'notes#restoration'
-      delete 'discard/:id' => 'notes#discard'
-
+        get 'trashcan' => 'notes#trashcan'
+        post 'notes/:id/restoration' => 'notes#restoration'
+        delete 'notes/:id/discard' => 'notes#discard'
     end
   end
 end
