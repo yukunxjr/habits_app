@@ -28,7 +28,7 @@ export default {
   props: {
     note: {
       type: Object,
-      default: null,
+      default: "",
     },
   },
   data() {
@@ -50,7 +50,6 @@ export default {
             return l.id === this.id ? res : l;
           });
           this.$parent.notes = notes;
-          this.$emit("set");
         })
         .catch((err) => {
           console.log(err);

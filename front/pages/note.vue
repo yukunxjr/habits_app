@@ -1,50 +1,149 @@
 <template>
-  <div class="home">
-    <template v-if="editTargetNote">
-      <EditNoteForm :note="editTargetNote" @set="editingNote" />
-    </template>
-    <template v-else>
-      <NewNoteForm />
-      <NotesContainer @set="editingNote" />
-    </template>
-  </div>
+  <v-app id="inspire">
+    <v-main class="grey lighten-3 pt-10">
+      <v-row class="mx-16">
+        <v-col cols="3">
+          <v-sheet>
+            <v-list color="transparent" class="list">
+              <v-list-item two-line>
+                <v-list-item-title class="title"> MyNote </v-list-item-title>
+                <v-spacer></v-spacer>
+                <v-dialog v-model="dialogTrashCan" width="800px">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon v-bind="attrs" v-on="on">
+                      <v-icon>mdi-trash-can</v-icon>
+                    </v-btn>
+                  </template>
+                  <Trashcan
+                    :delNotes="dels"
+                    @click_cancel="cancel"
+                    @click_reload="reload"
+                  />
+                </v-dialog>
+                <v-dialog v-model="dialog" width="800px">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon v-bind="attrs" v-on="on">
+                      <v-icon>mdi-folder-plus-outline</v-icon>
+                    </v-btn>
+                  </template>
+                  <CreateNote @click_cancel="cancel" @click_reload="reload" />
+                </v-dialog>
+              </v-list-item>
+              <v-divider class="my-2"></v-divider>
+              <v-list-item
+                v-for="note in notes"
+                :key="note.id"
+                @click="setNote(note)"
+                two-line
+              >
+                <v-list-item-content>
+                  <v-list-item-title>
+                    {{ note.title }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle
+                    >{{ note.updated_at }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-sheet>
+        </v-col>
+
+        <!-- 現在のノート -->
+        <v-col>
+          <v-card min-height="74vh">
+            <v-container>
+              <v-card-title>
+                {{ currentNote.title || "タイトル" }}
+              </v-card-title>
+              <v-divider></v-divider>
+              <v-card-text>
+                {{ currentNote.body || "内容" }}
+              </v-card-text>
+            </v-container>
+          </v-card>
+
+          <!-- 編集ボタン -->
+          <v-row class="justify-end mt-3 mr-3" v-if="currentNote">
+            <v-dialog v-model="dialogEdit" width="800px">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" class="mr-5">
+                  <!-- <v-icon>mdi-pencil-circle-outline</v-icon> -->
+                  編集
+                </v-btn>
+              </template>
+              <EditNote
+                :note="currentNote"
+                @click_cancel="cancel"
+                @click_reload="reload"
+              />
+            </v-dialog>
+            <v-btn @click="discardNote(currentNote.id)">
+              <!-- <v-icon>mdi-close</v-icon> -->
+              削除
+            </v-btn>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import NotesContainer from "@/components/NotesContainer.vue";
-import NewNoteForm from "@/components/NewNoteForm.vue";
-import EditNoteForm from "@/components/EditNoteForm.vue";
-
+import EditNote from "@/components/Note/EditNote.vue";
+import CreateNote from "@/components/Note/CreateNote.vue";
+import Trashcan from "@/components/Note/Trashcan.vue";
 export default {
-  components: {
-    NotesContainer,
-    NewNoteForm,
-    EditNoteForm,
-  },
+  components: { EditNote, CreateNote, Trashcan },
   data() {
     return {
       notes: [],
-      editTargetNote: "",
+      dels: [],
+      dialog: false,
+      dialogEdit: false,
+      dialogTrashCan: false,
+      currentNote: "",
     };
   },
   async asyncData({ $axios }) {
     const data = await $axios.$get("/api/v1/notes");
-    return { notes: data };
+    const delData = await $axios.$get("/api/v1/trashcan");
+    return { notes: data, dels: delData };
   },
   methods: {
-    editingNote(note = "") {
-      this.editTargetNote = note;
+    setNote(note) {
+      this.currentNote = note;
+      // console.log(Object.entries(this.currentNote));
+    },
+    cancel() {
+      this.dialog = false;
+      this.dialogEdit = false;
+      this.dialogTrashCan = false;
+    },
+    reload() {
+      location.reload();
+      this.dialog = false;
+      this.dialogEdit = false;
+      this.dialogTrashCan = false;
+    },
+    discardNote(id) {
+      this.$axios
+        .delete(`/api/v1/notes/${id}/discard`)
+        .then((res) => {
+          location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-.home {
-  width: 100vw;
-}
-
-.flex {
-  margin-bottom: 2rem;
+<style scoped>
+.list {
+  height: 80vh;
+  overflow-y: auto;
 }
 </style>
+-->
