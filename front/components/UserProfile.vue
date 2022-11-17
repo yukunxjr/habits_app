@@ -4,9 +4,12 @@
 
 <script>
 export default {
-  async asyncData({ $axios }) {
-    await this.$axios.$get("/api/v1/users/show");
-    return { user };
+  // async asyncData({ $axios }) {
+  //   await this.$axios.$get("/api/v1/users/show");
+  //   return { user };
+  // },
+  data() {
+    return { user: this.$auth.user };
   },
 };
 </script>
