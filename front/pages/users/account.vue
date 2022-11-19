@@ -35,7 +35,10 @@
 
           <v-col>
             <v-card min-height="70vh" rounded="lg">
-              <component v-bind:is="currentComponent"></component>
+              <component
+                v-bind:is="currentComponent"
+                :currentUser="user"
+              ></component>
             </v-card>
           </v-col>
         </v-row>
@@ -45,14 +48,20 @@
 </template>
 
 <script>
-import Profile from "@/components/UserProfile.vue";
-import Email from "@/components/UserEmail.vue";
-import Drawal from "@/components/UserDrawal.vue";
-import Password from "@/components/UserPassword.vue";
+import Profile from "@/components/User/UserProfile.vue";
+import Email from "@/components/User/UserEmail.vue";
+import Drawal from "@/components/User/UserDrawal.vue";
+import Password from "@/components/User/UserPassword.vue";
 
 export default {
   middleware: "auth",
+  async asyncData({ $axios }) {
+    const data = await $axios.$get("/api/v1/users/new");
+    return { user: data };
+  },
+
   data: () => ({
+    user: "",
     Items: [
       { name: "プロフィール", components: "Profile" },
       { name: "アカウント編集", components: "Email" },

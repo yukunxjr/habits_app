@@ -1,9 +1,10 @@
 class Api::V1::UsersController < ApplicationController
+   before_action :authenticate_user!
   def index
-    @user = current_user
-    render json: @user
+
   end
-  def show
+
+  def new
     @user = current_user
     render json: @user
   end

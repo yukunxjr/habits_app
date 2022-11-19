@@ -1,4 +1,5 @@
 class Api::V1::NotesController < ApplicationController
+   before_action :authenticate_user!
     before_action :set_note, only: %i[show destroy update discard restoration]
 
     def index
