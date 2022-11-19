@@ -3,6 +3,7 @@
     <v-card-title>
       <h3 class="display-1">パスワード編集</h3>
     </v-card-title>
+    <v-divider></v-divider>
     <v-row class="my-8" no-gutters>
       <v-col md="5" offset-md="2">
         <v-card-text>
