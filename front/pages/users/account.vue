@@ -3,7 +3,7 @@
     <v-main class="grey lighten-3 pt-10">
       <v-container>
         <v-row>
-          <v-col cols="2">
+          <v-col cols="3">
             <v-sheet rounded="lg">
               <v-list color="transparent">
                 <v-list-item
@@ -65,8 +65,8 @@ export default {
     Items: [
       { name: "プロフィール", components: "Profile" },
       { name: "アカウント編集", components: "Email" },
-      { name: "パスワード", components: "Password" },
-      { name: "退会", components: "drawal" },
+      { name: "パスワード変更", components: "Password" },
+      { name: "アカウント削除", components: "drawal" },
     ],
     currentComponent: "Profile",
   }),
