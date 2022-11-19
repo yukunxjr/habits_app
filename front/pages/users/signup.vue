@@ -28,19 +28,21 @@
           <v-text-field
             v-model="password"
             prepend-icon="mdi-lock"
-            append-icon="mdi-eye-off"
             label="パスワード"
-            type="password"
             class="mt-3"
+            :type="show2 ? 'text' : 'password'"
+            :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="show2 = !show2"
             :rules="[rules.required, rules.passwordLength]"
           />
           <v-text-field
             v-model="password_confirmation"
             prepend-icon="mdi-lock"
-            append-icon="mdi-eye-off"
             label="パスワード確認"
-            type="password"
             class="mt-3"
+            :type="show1 ? 'text' : 'password'"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="show1 = !show1"
             :rules="[rules.required]"
           />
           <v-btn
@@ -69,6 +71,8 @@ export default {
       email: "test1@test.com",
       password: "password",
       password_confirmation: "password",
+      show1: false,
+      show2: false,
       valid: true,
       error: null,
       rules: {

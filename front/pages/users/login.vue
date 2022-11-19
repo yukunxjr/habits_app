@@ -18,11 +18,12 @@
           />
           <v-text-field
             prepend-icon="mdi-lock"
-            append-icon="mdi-eye-off"
             label="パスワード"
             v-model="password"
-            type="password"
             class="mt-5"
+            :type="show ? 'text' : 'password'"
+            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="show = !show"
           />
           <v-card-actions>
             <v-btn
@@ -51,6 +52,7 @@ export default {
       email: "test5@test.com",
       password: "password",
       error: null,
+      show: false,
     };
   },
   methods: {
