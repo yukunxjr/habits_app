@@ -1,9 +1,7 @@
 <template>
-  <div>ホーム</div>
+  <div>aa</div>
 </template>
 
 <script>
-export default {
-  // data() {},
-};
+export default {};
 </script>
