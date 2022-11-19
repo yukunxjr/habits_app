@@ -25,7 +25,9 @@
                       variant="danger"
                       @click="logout"
                       color="gray"
-                      >・ログアウト
+                      ><v-icon>mdi-logout-variant</v-icon>
+                      <span class="mx-3"></span>
+                      ログアウト
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
