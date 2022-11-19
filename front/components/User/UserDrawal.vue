@@ -62,6 +62,7 @@ export default {
     <v-divider></v-divider>
     <v-row class="my-15" no-gutters>
       <v-col md="7" offset-md="2">
+        <v-icon>mdi-alert-rhombus</v-icon>
         <v-card-text class="text-h5 font-weight-bold">
           必ずご確認ください！<br />
           アカウントを削除すると、これまでのデータ（NoteやUserの情報等）はすべて削除されます。<br />
@@ -70,7 +71,9 @@ export default {
       </v-col>
       <v-col md="5" offset-md="6" class="mt-3">
         <v-card-actions>
-          <v-btn @click="deleteUser"> アカウントを削除する</v-btn>
+          <v-btn @click="deleteUser" depressed color="error">
+            アカウントを削除する</v-btn
+          >
         </v-card-actions>
       </v-col>
     </v-row>
