@@ -6,13 +6,18 @@
           <v-col cols="3">
             <v-sheet rounded="lg">
               <v-list color="transparent">
+                <v-list-item link>
+                  <nuxt-link to="/" class="text-decoration-none black--text">
+                    ・ アプリの使い方
+                  </nuxt-link>
+                </v-list-item>
                 <v-list-item
                   v-for="Item in Items"
                   :key="Item.number"
                   @click="currentComponent = Item.components"
                 >
                   <v-list-item-content>
-                    <v-list-item-title> ・{{ Item.name }} </v-list-item-title>
+                    <v-list-item-title> ・ {{ Item.name }} </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
 
