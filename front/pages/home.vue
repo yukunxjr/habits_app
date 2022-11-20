@@ -1,17 +1,43 @@
 <template>
-  <v-container>
+  <v-container class="mb-16 mt-10">
     <v-row>
-      <v-col cols="6">
-        <v-card height="300">スキル編集</v-card>
+      <v-col cols="12">
+        <v-card height="500">
+          <v-card-title>総学習時間</v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col cols="7">
+                <v-card>
+                  <v-card-title>棒グラフ</v-card-title>
+                </v-card>
+              </v-col>
+              <v-col cols="5">
+                <v-card>
+                  <v-card-title>学習時間</v-card-title>
+                  <v-card-text>
+                    <ul>
+                      <li>今週</li>
+                      <li>今月</li>
+                      <li>総学習時間</li>
+                    </ul>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
       </v-col>
       <v-col cols="6">
-        <v-card height="300">学習時間入力</v-card>
+        <v-card height="300" hover>
+          <v-card-title> スキル編集 </v-card-title>
+          <v-card-text></v-card-text>
+        </v-card>
       </v-col>
       <v-col cols="6">
-        <v-card height="300">総学習時間</v-card>
-      </v-col>
-      <v-col cols="6">
-        <v-card height="300">棒グラフ</v-card>
+        <v-card height="300" hover>
+          <v-card-title> 学習時間入力 </v-card-title>
+          <v-card-text></v-card-text>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>

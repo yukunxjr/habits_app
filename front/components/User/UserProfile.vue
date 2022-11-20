@@ -5,21 +5,14 @@
     </v-card-title>
     <v-divider></v-divider>
     <v-row class="my-15" no-gutters>
-      <v-col md="8" offset-md="2">
-        <v-card-text class="text-h5 font-weight-bold"
-          >ユーザー名 :{{ currentUser.name }}</v-card-text
-        >
+      <v-col cols="6">
+        <v-card-text>
+          ユーザー名 :{{ currentUser.name }} <br />
+          ユーザーEmail :{{ currentUser.email }}
+        </v-card-text>
       </v-col>
-      <v-col md="8" offset-md="2">
-        <v-card-text class="text-h5 font-weight-bold"
-          >ユーザーID :{{ currentUser.id }}</v-card-text
-        >
-      </v-col>
-      <v-col md="8" offset-md="2">
-        <v-card-text class="text-h5 font-weight-bold"
-          >ユーザーEmail :{{ currentUser.email }}</v-card-text
-        >
-      </v-col>
+      <v-divider vertical></v-divider>
+      <v-col cols="6"></v-col>
     </v-row>
   </v-container>
 </template>
