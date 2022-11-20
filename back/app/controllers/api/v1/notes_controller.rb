@@ -67,9 +67,5 @@ class Api::V1::NotesController < ApplicationController
     def note_params
       params.require(:note).permit(:body, :title).merge(user_id: current_user.id)
     end
-
-    # def restoration_params
-    #   params.permit(:body, :title, :id)
-    # end
 end
 
