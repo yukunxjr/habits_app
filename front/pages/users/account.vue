@@ -45,7 +45,10 @@
               <component
                 v-bind:is="currentComponent"
                 :currentUser="user"
-              ></component>
+                :userSkills="skill"
+                @click_reload="reload"
+              >
+              </component>
             </v-card>
           </v-col>
         </v-row>
@@ -59,25 +62,29 @@ import Profile from "@/components/User/UserProfile.vue";
 import Email from "@/components/User/UserEmail.vue";
 import Drawal from "@/components/User/UserDrawal.vue";
 import Password from "@/components/User/UserPassword.vue";
+import Skills from "@/components/User/UserSkill.vue";
 
 export default {
   middleware: "auth",
   async asyncData({ $axios }) {
-    const data = await $axios.$get("/api/v1/users/new");
-    return { user: data };
+    const userData = await $axios.$get("/api/v1/users/new");
+    const skillData = await $axios.$get("/api/v1/skills");
+    return { user: userData, skill: skillData };
   },
 
   data: () => ({
     user: "",
+    skill: "",
     Items: [
       { name: "プロフィール", components: "Profile" },
+      { name: "スキル編集", components: "Skills" },
       { name: "アカウント編集", components: "Email" },
       { name: "パスワード変更", components: "Password" },
       { name: "アカウント削除", components: "drawal" },
     ],
     currentComponent: "Profile",
   }),
-  components: { Profile, Email, Drawal, Password },
+  components: { Profile, Email, Drawal, Password, Skills },
   methods: {
     async logout() {
       await this.$auth.logout().then(() => {
@@ -86,6 +93,9 @@ export default {
         localStorage.removeItem("uid");
         localStorage.removeItem("token-type");
       });
+    },
+    reload() {
+      location.reload();
     },
   },
 };

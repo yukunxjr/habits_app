@@ -7,8 +7,8 @@
     <v-row class="my-15" no-gutters>
       <v-col cols="6">
         <v-card-text>
-          ユーザー名 :{{ currentUser.name }} <br />
-          ユーザーEmail :{{ currentUser.email }}
+          ユーザー名 :{{ user.name }} <br />
+          ユーザーEmail :{{ user.email }}
         </v-card-text>
       </v-col>
       <v-divider vertical></v-divider>
@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      currentUser: this.currentUser,
+      user: this.currentUser,
     };
   },
 };

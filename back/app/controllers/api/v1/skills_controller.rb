@@ -1,26 +1,27 @@
 class Api::V1::SkillsController < ApplicationController
-      def index
-    @slills = Slill.all.where(user_id: current_user.id)
-    render json: @slills
+
+  def index
+    @skills = Skill.all.where(user_id: current_user.id)
+    render json: @skills
   end
 
   def create
-    @slill = Slill.new(skill_params)
-    if @slill.save
+    @skill = Skill.new(skill_params)
+    if @skill.save
       render json: @skill
     else
-      render json: @slill.errors
+      render json: @skill.errors
     end
   end
 
   def destroy
-    @slill = Slill.find(params[:id])
-    @slill.destroy
+    @skill = Skill.find(params[:id])
+    @skill.destroy
     render json: @skill
   end
 
   private
   def skill_params
-    params.require(:slill).permit(:name).merge(user_id: current_user.id)
+    params.require(:skill).permit(:name).merge(user_id: current_user.id)
   end
 end
