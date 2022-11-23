@@ -34,15 +34,17 @@
         </v-card>
       </v-col>
       <v-col cols="6">
-        <v-card height="300" hover>
-          <v-card-title> 学習時間入力 </v-card-title>
-          <v-card-text></v-card-text>
-        </v-card>
+        <StudyTime />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-export default {};
+import StudyTime from "@/components/StudyTime.vue";
+export default {
+  components: {
+    StudyTime,
+  },
+};
 </script>
