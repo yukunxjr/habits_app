@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       end
       resources :notes, only: %i[index show create update destroy]
       resources :skills, only: %i[index create destroy]
+      resources :studies, only: %i[index create]
       get 'trashcan' => 'notes#trashcan'
       post 'notes/:id/restoration' => 'notes#restoration'
       delete 'notes/:id/discard' => 'notes#discard'
