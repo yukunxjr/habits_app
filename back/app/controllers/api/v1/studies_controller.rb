@@ -23,7 +23,7 @@ class Api::V1::StudiesController < ApplicationController
     private 
     
     def study_params
-        params.require(:study).permit(:time, :date, :skills_id).merge(user_id: current_user.id)
+        params.require(:study).permit(:time, :date, :skill_id).merge(user_id: current_user.id)
     end
 
 end
