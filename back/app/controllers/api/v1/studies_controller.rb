@@ -1,11 +1,17 @@
 class Api::V1::StudiesController < ApplicationController
     def index
-        # @skills = Skills.all.where(user_id: current_user)
-        # @study = Study.new
-
-        # 学習時間合計
-        @studies = Study.all.where(user_id: current_user).sum(:time)
-        render json: @studies
+        # 現在のユーザーの情報
+        user = Study.all.where(user_id: current_user)
+        # 総学習時間合計
+            all = user.sum(:time)
+        # 今月の学習時間合計
+            month = user.where(date: Time.current.all_month).sum(:time)
+        # 今週の学習時間合計
+            week = user.where(date: Time.current.all_week).sum(:time)
+        # 今日の学習時間合計
+            day = user.where(date: Date.today).sum(:time)
+        
+        render json: { "all" => all, "month" => month, "week" => week, "day" => day }
     end
     
     def create

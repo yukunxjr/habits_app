@@ -16,9 +16,10 @@
                   <v-card-title>学習時間</v-card-title>
                   <v-card-text>
                     <ul>
-                      <li>今週</li>
-                      <li>今月</li>
-                      <li>総学習時間:{{ studies }}</li>
+                      <li>今日:{{ studies.day }}時間</li>
+                      <li>今週:{{ studies.week }}時間</li>
+                      <li>今月:{{ studies.month }}時間</li>
+                      <li>総学習時間:{{ studies.all }}時間</li>
                     </ul>
                   </v-card-text>
                 </v-card>
