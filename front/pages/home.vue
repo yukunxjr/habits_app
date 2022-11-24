@@ -18,7 +18,7 @@
                     <ul>
                       <li>今週</li>
                       <li>今月</li>
-                      <li>総学習時間</li>
+                      <li>総学習時間:{{ studies }}</li>
                     </ul>
                   </v-card-text>
                 </v-card>
@@ -34,7 +34,7 @@
         </v-card>
       </v-col>
       <v-col cols="6">
-        <StudyTime />
+        <StudyTime :userSkills="skill" @click_reload="reload" />
       </v-col>
     </v-row>
   </v-container>
@@ -43,8 +43,24 @@
 <script>
 import StudyTime from "@/components/StudyTime.vue";
 export default {
+  async asyncData({ $axios }) {
+    const skillData = await $axios.$get("/api/v1/skills");
+    const studyData = await $axios.$get("/api/v1/studies");
+    return { skill: skillData, studies: studyData };
+  },
   components: {
     StudyTime,
+  },
+  data() {
+    return {
+      skill: "",
+      studies: "",
+    };
+  },
+  methods: {
+    reload() {
+      location.reload();
+    },
   },
 };
 </script>
