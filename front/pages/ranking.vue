@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <v-container>
       <h2>スキル入力</h2>
@@ -76,6 +76,22 @@ export default {
           console.log(err);
         });
     },
+  },
+};
+</script> -->
+
+<template>
+  <div>
+    <StudyChart />
+  </div>
+</template>
+
+<script>
+import StudyChart from "~/components/StudyChart.vue";
+
+export default {
+  components: {
+    StudyChart,
   },
 };
 </script>
