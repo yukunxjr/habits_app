@@ -35,7 +35,7 @@
         </v-card>
       </v-col>
       <v-col cols="6">
-        <StudyTime :userSkills="skill" @click_reload="reload" />
+        <StudyTime :userSkills="skills" @click_reload="reload" />
       </v-col>
     </v-row>
   </v-container>
@@ -47,14 +47,14 @@ export default {
   async asyncData({ $axios }) {
     const skillData = await $axios.$get("/api/v1/skills");
     const studyData = await $axios.$get("/api/v1/studies");
-    return { skill: skillData, studies: studyData };
+    return { skills: skillData, studies: studyData };
   },
   components: {
     StudyTime,
   },
   data() {
     return {
-      skill: "",
+      skills: "",
       studies: "",
     };
   },
