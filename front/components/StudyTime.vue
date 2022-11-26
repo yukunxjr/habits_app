@@ -4,8 +4,8 @@
     <v-card-text>
       <v-form>
         <v-container>
-          <v-row>
-            <v-col cols="3" md="6">
+          <v-row class="ml-10">
+            <v-col cols="3" md="7">
               <v-text-field
                 label="日付"
                 required
@@ -22,8 +22,8 @@
               <v-date-picker v-model="date" locale="”jp-ja”"></v-date-picker>
             </v-menu>
           </v-row>
-          <v-row>
-            <v-col cols="3" md="3">
+          <v-row class="ml-10">
+            <v-col cols="3" md="4">
               <v-select
                 label="時間"
                 :items="hour"
@@ -32,7 +32,7 @@
                 class="text-h6"
               ></v-select>
             </v-col>
-            <v-col cols="3" md="4">
+            <v-col cols="3" md="6">
               <v-select
                 v-model="skill"
                 label="スキル名"
@@ -45,11 +45,16 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col cols="3">
-              <v-card-actions>
-                <v-btn @click="addStudies">登録</v-btn>
-              </v-card-actions>
-            </v-col>
+            <v-spacer></v-spacer>
+            <v-card-actions>
+              <v-btn
+                @click="addStudies"
+                color="blue-grey"
+                class="mr-10 white--text"
+              >
+                登録
+              </v-btn>
+            </v-card-actions>
           </v-row>
         </v-container>
       </v-form>

@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-main class="grey lighten-3 pt-10">
+    <v-main class="blue-grey lighten-5 pt-10">
       <v-row class="mx-16">
         <v-col cols="3">
           <v-sheet>
@@ -67,8 +67,12 @@
           <v-row class="justify-end mt-3 mr-3" v-if="currentNote">
             <v-dialog v-model="dialogEdit" width="800px">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn v-bind="attrs" v-on="on" class="mr-5">
-                  <!-- <v-icon>mdi-pencil-circle-outline</v-icon> -->
+                <v-btn
+                  v-bind="attrs"
+                  v-on="on"
+                  color="blue-grey"
+                  class="mr-5 white--text"
+                >
                   編集
                 </v-btn>
               </template>
@@ -78,8 +82,11 @@
                 @click_reload="reload"
               />
             </v-dialog>
-            <v-btn @click="discardNote(currentNote.id)">
-              <!-- <v-icon>mdi-close</v-icon> -->
+            <v-btn
+              @click="discardNote(currentNote.id)"
+              class="white--text"
+              color="blue-grey"
+            >
               削除
             </v-btn>
           </v-row>
@@ -116,6 +123,7 @@ export default {
       // console.log(Object.entries(this.currentNote));
     },
     cancel() {
+      location.reload();
       this.dialog = false;
       this.dialogEdit = false;
       this.dialogTrashCan = false;

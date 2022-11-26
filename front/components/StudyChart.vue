@@ -17,14 +17,14 @@ export default {
               "rgba(255, 205, 86, 0.8)",
               "rgba(54, 162, 235, 0.8)",
               "rgba(255, 99, 132, 0.8)",
-              "rgba(153, 102, 255, 0.8)",
+              "rgba(153, 102, 255, 0)",
             ],
             data: [
               0,
               this.userStudy.ago,
               this.userStudy.yesterday,
               this.userStudy.today,
-              0,
+              10,
             ],
           },
         ],
@@ -32,6 +32,7 @@ export default {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        scales: { y: { min: 0 } },
       },
     };
   },

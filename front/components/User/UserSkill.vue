@@ -22,7 +22,9 @@
         </v-card-text>
       </v-col>
       <v-col>
-        <v-btn class="primary mt-11" @click="addSkill">追加</v-btn>
+        <v-btn color="blue-grey" class="white--text mt-11" @click="addSkill"
+          >追加</v-btn
+        >
       </v-col>
     </v-row>
     <v-flex offset-xs1 xs5>

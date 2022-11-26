@@ -18,8 +18,14 @@
             {{ note.updated_at }}{{ note.title }}
           </v-list-item-title>
         </v-list-item-content>
-        <v-btn @click="restorationNote(note.id)">復元</v-btn>
-        <v-btn @click="removeNote(note.id)">削除</v-btn>
+        <v-btn
+          @click="restorationNote(note.id)"
+          color="blue-grey"
+          class="white--text mr-3"
+        >
+          復元
+        </v-btn>
+        <v-btn @click="removeNote(note.id)" class="error">削除</v-btn>
       </v-list-item>
     </v-card-text>
   </v-card>

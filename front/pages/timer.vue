@@ -4,32 +4,68 @@
       <TimerDialog @click_submit="return_data" @click_cancel="cancel">
       </TimerDialog>
     </v-dialog>
-    <v-card-title>TIMER</v-card-title>
-    <v-card-text>
-      <v-row class="text-center pa-15" justify="center">
-        <v-col cols="12" md="2">
-          <div class="text-h1" :v-model="hour">{{ hour | zeroPad }}</div>
-          <div class="text-h6">hour</div>
+    <v-card-text class="mt-16">
+      <v-row class="text-center pa-16" justify="center">
+        <v-col cols="12" md="3">
+          <div class="timer mt-8" :v-model="hour">{{ hour | zeroPad }}</div>
+          <div class="text-h6 mt-14">hour</div>
         </v-col>
         <v-col cols="12" md="1" class="text-h1">:</v-col>
-        <v-col cols="12" md="2">
-          <div class="text-h1" :v-model="min">{{ min | zeroPad }}</div>
-          <div class="text-h6">min</div>
+        <v-col cols="12" md="3">
+          <div class="timer mt-8" :v-model="min">{{ min | zeroPad }}</div>
+          <div class="text-h6 mt-14">min</div>
         </v-col>
         <v-col cols="12" md="1" class="text-h1">:</v-col>
-        <v-col cols="12" md="2">
-          <div class="text-h1" :v-model="sec">{{ sec | zeroPad }}</div>
-          <div class="text-h6">sec</div>
+        <v-col cols="12" md="3">
+          <div class="timer mt-8" :v-model="sec">{{ sec | zeroPad }}</div>
+          <div class="text-h6 mt-14">sec</div>
         </v-col>
       </v-row>
     </v-card-text>
-    <v-card-text :v-model="saund"> サウンド：{{ saund }} </v-card-text>
-    <v-card-actions justify="center">
-      <v-btn @click="start" v-if="!timerOn">START</v-btn>
-      <v-btn @click="stop" v-if="timerOn">STOP</v-btn>
-      <v-btn @click="reset" v-if="!timerOn">RESET</v-btn>
-      <v-btn @click.stop="dialog = true" v-if="!timerOn"> タイマー設定 </v-btn>
-    </v-card-actions>
+    <v-row justify="center" align-content="center">
+      <v-card-actions class="mt-10">
+        <v-btn
+          @click="start"
+          v-if="!timerOn"
+          min-width="120px"
+          large
+          color="blue-grey"
+          class="mr-5 white--text"
+        >
+          スタート
+        </v-btn>
+        <v-btn
+          @click="stop"
+          v-if="timerOn"
+          min-width="120px"
+          color="blue-grey"
+          class="white--text"
+          large
+        >
+          ストップ
+        </v-btn>
+        <v-btn
+          @click="reset"
+          v-if="!timerOn"
+          min-width="120px"
+          color="blue-grey"
+          class="mr-5 white--text"
+          large
+        >
+          リセット
+        </v-btn>
+        <v-btn
+          @click.stop="dialog = true"
+          v-if="!timerOn"
+          min-width="120px"
+          large
+          color="blue-grey"
+          class="white--text"
+        >
+          タイマー設定
+        </v-btn>
+      </v-card-actions>
+    </v-row>
   </v-card>
 </template>
 
@@ -142,3 +178,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.timer {
+  font-size: 150px;
+}
+</style>
