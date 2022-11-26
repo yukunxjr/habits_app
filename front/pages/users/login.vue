@@ -4,6 +4,7 @@
       <v-card-title>
         <h1 class="display-1">ログイン</h1>
       </v-card-title>
+      <v-divider></v-divider>
       <v-alert dense outlined type="error" v-if="error">
         ログイン情報が正しくありません。再度お試しください。
       </v-alert>
@@ -26,12 +27,7 @@
             @click:append="show = !show"
           />
           <v-card-actions>
-            <v-btn
-              block
-              color="light-green darken-1"
-              class="white--text mt-5"
-              type="submit"
-            >
+            <v-btn block color="primary" class="white--text mt-5" type="submit">
               ログイン
             </v-btn>
           </v-card-actions>

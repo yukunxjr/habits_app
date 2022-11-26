@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-main class="grey lighten-3 pt-10">
+    <v-main class="blue-grey lighten-5 pt-10">
       <v-container>
         <v-row>
           <v-col cols="3">
@@ -58,7 +58,6 @@
 </template>
 
 <script>
-import Profile from "@/components/User/UserProfile.vue";
 import Email from "@/components/User/UserEmail.vue";
 import Drawal from "@/components/User/UserDrawal.vue";
 import Password from "@/components/User/UserPassword.vue";
@@ -76,15 +75,14 @@ export default {
     user: "",
     skill: "",
     Items: [
-      { name: "プロフィール", components: "Profile" },
-      { name: "スキル編集", components: "Skills" },
       { name: "アカウント編集", components: "Email" },
       { name: "パスワード変更", components: "Password" },
+      { name: "スキル編集", components: "Skills" },
       { name: "アカウント削除", components: "drawal" },
     ],
-    currentComponent: "Profile",
+    currentComponent: "Email",
   }),
-  components: { Profile, Email, Drawal, Password, Skills },
+  components: { Email, Drawal, Password, Skills },
   methods: {
     async logout() {
       await this.$auth.logout().then(() => {

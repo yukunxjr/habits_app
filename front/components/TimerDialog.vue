@@ -55,7 +55,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn text color="success" @click="submit"> OK </v-btn>
+      <v-btn text color="primary" @click="submit"> OK </v-btn>
       <v-btn text color="gray" @click="cancel"> キャンセル </v-btn>
     </v-card-actions>
   </v-card>

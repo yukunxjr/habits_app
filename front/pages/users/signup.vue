@@ -4,6 +4,7 @@
       <v-card-title>
         <h1 class="display-1">新規登録</h1>
       </v-card-title>
+      <v-divider></v-divider>
       <v-spacer v-if="!error"></v-spacer>
       <v-alert dense outlined type="error" v-if="error">
         登録に失敗しました。お手数ですが再度お試しください。

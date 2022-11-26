@@ -10,7 +10,7 @@ class Api::V1::StudiesController < ApplicationController
             week = user.where(date: Time.current.all_week).sum(:time)
         # 今日,昨日,一昨日の学習時間合計
             today = user.where(date: Date.today).sum(:time)
-            yesterday = user.where(date: Date.yesterday).sum(:time)
+            yesterday = user.where(date: Date.today.ago(1.days)).sum(:time)
             ago = user.where(date: Date.today.ago(2.days)).sum(:time)
         
         render json: {"all" => all,"month" => month,"week" => week,"today" => today,"yesterday" => yesterday,"ago" => ago }

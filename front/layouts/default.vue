@@ -18,3 +18,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.v-main__wrap {
+  background: #eceff1;
+}
+</style>

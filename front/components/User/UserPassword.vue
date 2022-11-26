@@ -50,11 +50,7 @@
       </v-col>
       <v-col md="5" offset-md="6" class="mt-3">
         <v-card-actions>
-          <v-btn
-            color="light-green darken-1"
-            class="white--text"
-            @click="editPassword"
-          >
+          <v-btn color="blue-grey" class="white--text" @click="editPassword">
             保存する
           </v-btn>
         </v-card-actions>
