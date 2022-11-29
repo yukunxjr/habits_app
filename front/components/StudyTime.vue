@@ -39,7 +39,7 @@
                 :items="skills"
                 item-value="value"
                 item-text="name"
-                class="text-h6"
+                class="text-h7"
                 return-object
               ></v-select>
             </v-col>

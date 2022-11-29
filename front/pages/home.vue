@@ -6,8 +6,8 @@
           <v-card-text>
             <v-row class="mt-6">
               <v-col cols="3">
-                テストさん<br />
-                ランク:80Lv
+                {{ user.name }}さん<br />
+                {{ randomMsg }}
               </v-col>
               <v-divider vertical></v-divider>
               <v-col cols="3">
@@ -45,7 +45,7 @@
               <v-col cols="5">
                 <v-card hover height="480px">
                   <v-card-title>学習時間TOP5</v-card-title>
-                  <v-card-text>
+                  <v-card-text v-if="studies.all > 0">
                     <SkillChart
                       :skillTime="skillSumTime"
                       :userSkills="skills"
@@ -78,7 +78,7 @@
     </v-row>
     <v-row class="mt-10" justify="center" align-content="center">
       <v-col cols="4">
-        <StudyTime :sills="skills" @click_reload="reload" />
+        <StudyTime :userSkills="skills" @click_reload="reload" />
       </v-col>
       <v-col cols="8">
         <v-card height="350" hover>
@@ -97,9 +97,10 @@ import SkillChart from "@/components/SkillChart.vue";
 
 export default {
   async asyncData({ $axios }) {
+    const userData = await $axios.$get("/api/v1/users/new");
     const skillData = await $axios.$get("/api/v1/skills");
     const studyData = await $axios.$get("/api/v1/studies");
-    return { skills: skillData, studies: studyData };
+    return { user: userData, skills: skillData, studies: studyData };
   },
   components: {
     StudyTime,
@@ -108,9 +109,16 @@ export default {
   },
   data() {
     return {
+      user: "",
       skills: "",
       studies: "",
-      top5: [],
+      msg: [
+        "勉強お疲れ様です！",
+        "今日も頑張りましょう！",
+        "スキルを磨きましょう！",
+        "Let's Study!",
+        "今日は勉強日和ですね！",
+      ],
     };
   },
   methods: {
@@ -124,16 +132,31 @@ export default {
   },
   computed: {
     skillSumTime() {
+      let top5 = [];
+      let dummy = { skill_name: "-", value: 0 };
       let obj = this.studies.skill;
       let array = Object.keys(obj).map((k) => ({
         skill_name: this.skillId(Number(k)),
         value: obj[k],
       }));
       array.sort((a, b) => b.value - a.value);
-      for (let i = 0; i < 5; ++i) {
-        this.top5.push(array[i]);
+      for (let i = 0; i < array.length; ++i) {
+        if (top5.length > 5) {
+          top5.pop();
+        } else {
+          top5.push(array[i]);
+        }
       }
-      return this.top5;
+      for (let i = 0; i < 5; ++i) {
+        if (top5.length < 5) {
+          top5.push(dummy);
+        }
+      }
+      return top5;
+    },
+    randomMsg() {
+      const msgNum = Math.floor(Math.random() * this.msg.length);
+      return this.msg[msgNum];
     },
   },
 };
