@@ -42,15 +42,6 @@ ActiveRecord::Schema.define(version: 2022_11_23_030555) do
     t.index ["user_id"], name: "index_studies_on_user_id"
   end
 
-  create_table "study_times", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.float "time"
-    t.date "date"
-    t.bigint "skill_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["skill_id"], name: "index_study_times_on_skill_id"
-  end
-
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
