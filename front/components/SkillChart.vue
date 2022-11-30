@@ -27,6 +27,7 @@ export default {
               this.skillTime[2].value,
               this.skillTime[3].value,
               this.skillTime[4].value,
+
             ],
             backgroundColor: [
               "rgba(255, 205, 86, 0.8)",

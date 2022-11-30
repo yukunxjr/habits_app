@@ -9,6 +9,8 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql # データの永続化
     command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - '3306:3306'
 
   back:
     build: back/
