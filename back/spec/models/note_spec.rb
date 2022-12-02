@@ -7,7 +7,6 @@ RSpec.describe Note, type: :model do
       email: "test@example.com",
       password: "password",
     )
-
   end
   it "タイトル,ユーザーIDがあれば有効な状態であること" do
     note = Note.new(
