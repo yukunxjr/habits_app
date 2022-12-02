@@ -2,25 +2,18 @@ require 'rails_helper'
 
 RSpec.describe Study, type: :model do
   before do
-    @user = User.create(
-      name: "Test",
-      email: "test@example.com",
-      password: "password",
-    )
-    @skill = Skill.create(
-      name: "Test1",
-      user_id: @user.id,
-    )
+    @user = FactoryBot.create(:user)
+    @skill = FactoryBot.create(:skill, user_id: @user.id)
   end
 
   it "日付、時間、スキルID、ユーザーIDがあれば有効な状態であること" do
-    study = Study.new(
-      date: "2022-12-02",
-      time: "3",
-      skill_id: @skill.id,
-      user_id: @user.id,
-    )
+    study = FactoryBot.create(:study)
     expect(study).to be_valid
   end
 
+  it "学習時間の合計値が24時間/1日を超えれば無効であること" do
+    study = FactoryBot.build(:study, time: 25)
+    expect(study.valid?).to eq(false) 
+  end
+  
 end
