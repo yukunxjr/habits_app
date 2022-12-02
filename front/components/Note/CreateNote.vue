@@ -13,6 +13,7 @@
           type="text"
           class="mx-5"
           height="300"
+          :counter="1000"
         />
       </v-form>
       <v-divider></v-divider>
