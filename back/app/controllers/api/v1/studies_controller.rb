@@ -1,4 +1,5 @@
 class Api::V1::StudiesController < ApplicationController
+    before_action :authenticate_user!
     def index
         # 現在のユーザーの情報
         user = Study.all.where(user_id: current_user)
