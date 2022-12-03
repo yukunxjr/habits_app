@@ -1,5 +1,5 @@
 class Api::V1::SkillsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @skills = Skill.all.where(user_id: current_user.id)
     render json: @skills
