@@ -1,10 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::SkillsController, type: :controller do
+RSpec.describe Api::V1::StudiesController, type: :controller do
     describe "index" do
         context "認証済みのユーザー" do
             before do
                 @user = FactoryBot.create(:user)
+                @skill = FactoryBot.create(:skill, user_id: @user.id)
             end
             it "JSON形式のレスポンスを返すこと" do
                 sign_in @user
@@ -22,12 +23,12 @@ RSpec.describe Api::V1::SkillsController, type: :controller do
     describe "create" do
         before do
             @user = FactoryBot.create(:user)
+            @skill = FactoryBot.create(:skill, user_id: @user.id)
         end
         it "JSON形式のレスポンスを返すこと" do
             sign_in @user
-            post :create, format: :json, params: { name: "Test1", user_id: @user.id }
+            post :create, format: :json, params: { date: "2022-12-03" , time: 5 , user_id: @user.id, skill_id: @skill.id }
             expect(response.content_type).to include "application/json"
         end
     end 
 end
-
