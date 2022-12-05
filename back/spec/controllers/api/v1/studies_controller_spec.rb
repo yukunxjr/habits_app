@@ -4,8 +4,8 @@ RSpec.describe Api::V1::StudiesController, type: :controller do
     describe "index" do
         context "認証済みのユーザー" do
             before do
-                @user = FactoryBot.create(:user)
-                @skill = FactoryBot.create(:skill, user_id: @user.id)
+                @user = create(:user)
+                @skill = create(:skill, user_id: @user.id)
             end
             it "JSON形式のレスポンスを返すこと" do
                 sign_in @user
