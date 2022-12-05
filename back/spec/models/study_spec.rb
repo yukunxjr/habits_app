@@ -7,8 +7,7 @@ RSpec.describe Study, type: :model do
   end
 
   it "日付、時間、スキルID、ユーザーIDがあれば有効な状態であること" do
-    study = FactoryBot.create(:study)
-    expect(study).to be_valid
+    expect(FactoryBot.build(:study, skill_id: @skill.id, user_id: @user.id )).to be_valid
   end
 
   it "学習時間の合計値が24時間/1日を超えれば無効であること" do
