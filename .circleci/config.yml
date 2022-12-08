@@ -21,10 +21,10 @@ jobs:
     docker:
       - image: cimg/ruby:2.7.6
       - image: cimg/mysql:8.0
-        environment:
-          MYSQL_ROOT_PASSWORD: userpassword
-          MYSQL_DATABASE: app_test
-          MYSQL_USER: username
+          environment:
+            MYSQL_ROOT_PASSWORD: userpassword
+            MYSQL_DATABASE: app_test
+            MYSQL_USER: username
     environment:
       BUNDLE_JOBS: '3'
       BUNDLE_RETRY: '3'
@@ -36,11 +36,11 @@ jobs:
           path: ~/havits_app/back
       - ruby/install-deps
       - run:
-        name: Database setup
-        command: bundle exec rails db:migrate
+          name: Database setup
+          command: bundle exec rails db:migrate
       - run:
-        name: test
-        command: bundle exec rspec
+          name: test
+          command: bundle exec rspec
 
 workflows:
   version: 2
@@ -48,8 +48,8 @@ workflows:
     jobs:
       - build
       - test:
-        requires:
-          - build
+          requires:
+            - build
 #
 #
 #
