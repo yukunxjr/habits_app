@@ -4,10 +4,10 @@ services:
   db: # MySQLが起動するコンテナ
     image: mysql:8.0.31
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: userpassword
     platform: linux/amd64
     volumes:
-      - mysql_data:/var/lib/mysql # データの永続化
+      - mysql_data:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password
     ports:
       - '3306:3306'

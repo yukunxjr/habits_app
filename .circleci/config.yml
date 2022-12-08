@@ -1,87 +1,54 @@
+# docker:
+#   - image: 'cimg/ruby:2.7.6'
+#     # environment:
+#     #   RAILS_ENV: test
+#     #   DB_HOST: 127.0.0.1
+#   - image: circleci/mysql:8.0.31
 version: 2.1
-
+orbs:
+  ruby: circleci/ruby@2.0.0
 jobs:
-  back:
-    # docker: CI環境にDockerを利用する場合の設定。
+  build:
     docker:
-      - image: 'cimg/ruby:2.7.6'
-        # environment:
-        #   RAILS_ENV: test
-        #   DB_HOST: 127.0.0.1
-      - image: circleci/mysql:8.0.31
-
-    # ワークするディレクトリを指定
-    working_directory: ~/repo
-
-    # checkout: CI環境上の working_directory の値の場所にGitリポジトリをコピーする。
+      - image: cimg/ruby:2.7.6
+    working_directory: ~/havits_app/back
     steps:
-      - checkout
-
-      # save_cacheで指定した同じkeyを用いて、キャッシュをリストア
-      # リストアとは初期化すること
-      # キャッシュしたものを再度使用することができます
-      - restore_cache:
-          keys:
-            - gem-cache-v1-{{ checksum "~/repo/back/Gemfile.lock" }}
-            - gem-cache-v1-
-          working_directory: ~/repo/back
-
-      # gem install
-      # run: コマンドを実行する
-      # name: 任意のrunの名前
-      # command: コマンドを設定する
-      - run:
-          command: |
-            gem install bundler
-            bundle config set path 'vendor/bundle'
-            bundle install --jobs=4 --retry=3
-          working_directory: ~/repo/back
-
-      # pathとkeyを設定する事でキャッシュできる
-      # 一度使ったものを保存しておき次回以降の速度アップに役立てる（dockerイメージみたいな感じ）
-      - save_cache:
-          key: gem-cache-v1-{{ checksum "~/repo/back/Gemfile.lock" }}
-          paths:
-            - ~/repo/back/vendor/bundle
-          working_directory: ~/repo/back
-
-      # Database setup
-      - run:
-          command: bundle exec rails db:create
-          working_directory: ~/repo/back
-      - run:
-          command: bundle exec rails db:migrate
-          working_directory: ~/repo/back
-
-      - run:
-          name: create directory to store test results
-          command: mkdir /tmp/test-results
-          working_directory: ~/repo/back
-
-      # run tests
-      - run:
-          name: RSpec
-          command: |
-            bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings) \
-              || (printf "====== RETRYING...\n\n\n"; bundle exec rspec --only-failures)
-          working_directory: ~/repo/back
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
-      - store_artifacts:
-          path: /home/circleci/repo/tmp/screenshots
+      - checkout:
+          path: ~/havits_app/back
+      - ruby/install-deps
+  test:
+    docker:
+      - image: cimg/ruby:2.7.6
+      - image: cimg/mysql:8.0
+        environment:
+          MYSQL_ROOT_PASSWORD: userpassword
+          MYSQL_DATABASE: app_test
+          MYSQL_USER: username
+      environment:
+        BUNDLE_JOBS: "3"
+        BUNDLE_RETRY: "3"
+        APP_DATABASE_HOST: "127.0.0.1"
+        RAILS_ENV: test
+      working_directory: ~/havits_app/back
+      steps:
+        - checkout:
+          path: ~/havits_app/back
+        - ruby/install-deps
+        - run:
+            name: Database setup
+            command: bundle exec rails db:migrate
+        - run:
+            name: test
+            command: bundle exec rspec
 
 workflows:
-  test:
+  version: 2
+  build_and_test:
     jobs:
-      - back:
-          filters:
-            branches:
-              ignore: main
+      - build
+      - test:
+        requires:
+          - build
 #
 #
 #
