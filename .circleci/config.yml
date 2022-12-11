@@ -1,74 +1,74 @@
-version: 2.1
-orbs:
-  ruby: circleci/ruby@2.0.0
-jobs:
-  build:
-    docker:
-      - image: cimg/ruby:2.7.6
-    working_directory: ~/havits_app/back
-    steps:
-      - checkout:
-          path: ~/havits_app/back
-      - restore_cache:
-          keys:
-            - gem-cache-v1-{{ checksum "~/havits/back/Gemfile.lock" }}
-            - gem-cache-v1-
-          working_directory: ~/havits_app/back
-      - ruby/install-deps
-
-  test:
-    docker:
-      - image: cimg/ruby:2.7.6
-      - image: cimg/mysql:8.0
-        environment:
-          MYSQL_ROOT_PASSWORD: userpassword
-          MYSQL_DATABASE: app_test
-          MYSQL_USER: username
-    environment:
-      BUNDLE_JOBS: '3'
-      BUNDLE_RETRY: '3'
-      APP_DATABASE_HOST: '127.0.0.1'
-      RAILS_ENV: test
-    working_directory: ~/havits_app/back
-    steps:
-      - checkout:
-          path: ~/havits_app/back
-      - ruby/install-deps
-      - run:
-          name: Database setup
-          command: bundle exec rails db:migrate
-      - run:
-          name: test
-          command: bundle exec rspec
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
-#
-#
-#
-#
-#
-#
-#
 # version: 2.1
+# orbs:
+#   ruby: circleci/ruby@2.0.0
 # jobs:
-#   test:
-#     # docker: CI環境にDockerを利用する場合の設定。
+#   build:
 #     docker:
-#       - image: 'cimg/ruby:2.7.6'
-#     # checkout: CI環境上の working_directory の値の場所にGitリポジトリをコピーする。
+#       - image: cimg/ruby:2.7.6
+#     working_directory: ~/havits_app/back
 #     steps:
-#       - checkout
+#       - checkout:
+#           path: ~/havits_app/back
+#       - restore_cache:
+#           keys:
+#             - gem-cache-v1-{{ checksum "~/havits/back/Gemfile.lock" }}
+#             - gem-cache-v1-
+#           working_directory: ~/havits_app/back
+#       - ruby/install-deps
+
+#   test:
+#     docker:
+#       - image: cimg/ruby:2.7.6
+#       - image: cimg/mysql:8.0
+#         environment:
+#           MYSQL_ROOT_PASSWORD: userpassword
+#           MYSQL_DATABASE: app_test
+#           MYSQL_USER: username
+#     environment:
+#       BUNDLE_JOBS: '3'
+#       BUNDLE_RETRY: '3'
+#       APP_DATABASE_HOST: '127.0.0.1'
+#       RAILS_ENV: test
+#     working_directory: ~/havits_app/back
+#     steps:
+#       - checkout:
+#           path: ~/havits_app/back
+#       - ruby/install-deps
 #       - run:
-#           name: echo
-#           command: echo "Hello, world!!"
+#           name: Database setup
+#           command: bundle exec rails db:migrate
+#       - run:
+#           name: test
+#           command: bundle exec rspec
+
 # workflows:
-#   test_workflow:
+#   version: 2
+#   build_and_test:
 #     jobs:
-#       - test
+#       - build
+#       - test:
+#           requires:
+#             - build
+#
+#
+#
+#
+#
+#
+#
+version: 2.1
+jobs:
+  test:
+    # docker: CI環境にDockerを利用する場合の設定。
+    docker:
+      - image: 'cimg/ruby:2.7.6'
+    # checkout: CI環境上の working_directory の値の場所にGitリポジトリをコピーする。
+    steps:
+      - checkout
+      - run:
+          name: echo
+          command: echo "Hello, world!!"
+workflows:
+  test_workflow:
+    jobs:
+      - test
