@@ -20,11 +20,11 @@ export default {
       url: "/timer",
       icon: "mdi-timer",
     },
-    {
-      name: "RANKING",
-      url: "/ranking",
-      icon: "mdi-certificate",
-    },
+    // {
+    //   name: "RANKING",
+    //   url: "/ranking",
+    //   icon: "mdi-certificate",
+    // },
     // {
     //   name: "ACCOUNT",
     //   url: "/users/account",
