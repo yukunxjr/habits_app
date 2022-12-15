@@ -16,7 +16,7 @@
               <v-divider vertical></v-divider>
               <v-col cols="3">
                 総ノート数<br />
-                10
+                {{ notes.length }}
               </v-col>
               <v-divider vertical></v-divider>
               <v-col cols="3">
@@ -99,7 +99,13 @@ export default {
     const userData = await $axios.$get("/api/v1/users/new");
     const skillData = await $axios.$get("/api/v1/skills");
     const studyData = await $axios.$get("/api/v1/studies");
-    return { user: userData, skills: skillData, studies: studyData };
+    const noteData = await $axios.$get("/api/v1/notes");
+    return {
+      user: userData,
+      skills: skillData,
+      studies: studyData,
+      notes: noteData,
+    };
   },
   components: {
     StudyTime,
@@ -111,6 +117,7 @@ export default {
       user: "",
       skills: "",
       studies: "",
+      notes: "",
       msg: [
         "勉強お疲れ様です！",
         "今日も張り切っていきましょう！",
