@@ -36,3 +36,6 @@ EXPOSE 3000
 
 # コマンドを実行
 CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "development"]
+
+# 本番環境
+# CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
