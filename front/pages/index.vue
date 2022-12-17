@@ -8,7 +8,7 @@
         Habitsとは
       </v-card-title>
       <v-card-text class="text-center text-subtitle-1">
-        学習時間を計測・記録・管理し、勉強時間や勉強量を可視化できるアプリです
+        学習時間を計測・記録・管理し、勉強時間や勉強量を可視化できるアプリです!
       </v-card-text>
     </v-card>
     <v-card height="400px">
