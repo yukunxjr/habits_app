@@ -14,9 +14,12 @@ class Api::V1::StudiesController < ApplicationController
             yesterday = user.where(date: Date.today.ago(1.days)).sum(:time)
             ago = user.where(date: Date.today.ago(2.days)).sum(:time)
         # スキルの学習合計時間
-        skill = user.group(:skill_id).sum(:time)
+            skill = user.group(:skill_id).sum(:time)
+        # 総学習日数
+            all_date = user.group(:date).count.length
 
         render json: {
+            "userStudies" => all_date,
             "all" => all,
             "month" => month,
             "week" => week,

@@ -30,6 +30,17 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row class="mt-10" justify="center" align-content="center">
+      <v-col cols="4">
+        <StudyTime :userSkills="skills" @click_reload="reload" />
+      </v-col>
+      <v-col cols="8">
+        <v-card height="350" hover>
+          <v-card-title>今週の目標</v-card-title>
+          <v-card-text></v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
     <v-row class="mt-10">
       <v-col cols="12">
         <v-card height="700">
@@ -69,21 +80,14 @@
                     総学習時間・・・・・・・・
                     {{ studies.all }}時間
                   </li>
+                  <li>
+                    総学習日数・・・・・・・・
+                    {{ studies.userStudies }}日
+                  </li>
                 </ul>
               </v-col>
             </v-row>
           </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row class="mt-10" justify="center" align-content="center">
-      <v-col cols="4">
-        <StudyTime :userSkills="skills" @click_reload="reload" />
-      </v-col>
-      <v-col cols="8">
-        <v-card height="350" hover>
-          <v-card-title>目標</v-card-title>
-          <v-card-text></v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -118,6 +122,7 @@ export default {
       user: "",
       skills: "",
       studies: "",
+      userStudies: "",
       notes: "",
       msg: [
         "勉強お疲れ様です！",

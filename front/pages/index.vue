@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="ma-0 pa-0">
     <v-card height="400px">
-      <v-text>カルーセルスライダーの導入</v-text>
+      <v-card-title>カルーセルスライダーの導入</v-card-title>
     </v-card>
     <v-card color="red lighten-4" height="200px">
       <v-card-title class="justify-center text-h5 font-weight-bold">
@@ -15,7 +15,7 @@
       <v-card-title class="justify-center text-h5 font-weight-bold">
         こんな方におすすめ！
       </v-card-title>
-      <v-cardーtext class="text-center text-subtitle-1">
+      <v-card-text class="text-center text-subtitle-1">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title>
@@ -41,7 +41,7 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-cardーtext>
+      </v-card-text>
     </v-card>
     <v-card color="orange lighten-4" height="200px" class="pt-10">
       <v-card-title class="justify-center red--text text-h5 font-weight-black">
