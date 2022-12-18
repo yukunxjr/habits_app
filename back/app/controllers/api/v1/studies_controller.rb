@@ -19,7 +19,7 @@ class Api::V1::StudiesController < ApplicationController
             all_date = user.group(:date).count.length
 
         render json: {
-            "userStudies" => all_date,
+            "studiesAllDate" => all_date,
             "all" => all,
             "month" => month,
             "week" => week,

@@ -82,7 +82,7 @@
                   </li>
                   <li>
                     総学習日数・・・・・・・・
-                    {{ studies.userStudies }}日
+                    {{ studies.studiesAllDate }}日
                   </li>
                 </ul>
               </v-col>
@@ -122,7 +122,7 @@ export default {
       user: "",
       skills: "",
       studies: "",
-      userStudies: "",
+      studiesAllDate: "",
       notes: "",
       msg: [
         "勉強お疲れ様です！",
