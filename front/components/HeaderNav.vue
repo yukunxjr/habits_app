@@ -8,7 +8,7 @@
       <v-tabs
         v-if="this.$auth.loggedIn"
         background-color="transparent"
-        color="red"
+        color="blue"
         grow
       >
         <v-tab v-for="(Item, index) in Items" :key="index" class="text-h6">
@@ -33,7 +33,7 @@
       <v-tabs
         v-if="!this.$auth.loggedIn"
         background-color="transparent"
-        color="red"
+        color="blue"
         right
       >
         <v-tab class="text-h6">
