@@ -1,10 +1,11 @@
 <template>
-  <v-card height="350" hover>
-    <v-card-title> 学習時間入力 </v-card-title>
+  <v-card height="400">
+    <v-card-title class="ml-3"> 学習時間入力 </v-card-title>
+    <v-divider></v-divider>
     <v-card-text>
       <v-form>
         <v-container>
-          <v-row class="ml-10">
+          <v-row class="ml-10 mt-2">
             <v-col cols="3" md="7">
               <v-text-field
                 label="日付"

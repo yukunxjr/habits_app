@@ -48,17 +48,10 @@ export default {
     restorationNote(id) {
       this.$axios
         .$post(`/api/v1/notes/${id}/restoration`)
-        .then((res) => {
-          // const notes = this.$parent.notes.map((l) => {
-          //   return l.id === this.id ? res : l;
-          // });
-          // this.$parent.notes = notes;
-          // this.$emit("click_reload");
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });
-      // this.$emit("click_reload");
     },
     cancel() {
       this.$emit("click_reload");
