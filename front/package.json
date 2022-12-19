@@ -16,7 +16,9 @@
     "@nuxtjs/proxy": "^2.1.0",
     "chart.js": "2.8",
     "nuxt": "^2.0.0",
+    "swiper": "^8.4.5",
     "vee-validate": "^4.7.2",
+    "vue-awesome-swiper": "^5.0.1",
     "vue-chartjs": "3.4.2",
     "vue-circular-count-down-timer": "^2.0.0"
   },

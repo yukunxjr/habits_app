@@ -2,7 +2,7 @@
   <v-container class="mb-16 mt-10">
     <v-row>
       <v-col align="center">
-        <v-card hover height="150px">
+        <v-card height="150px">
           <v-card-text>
             <v-row class="mt-6">
               <v-col cols="3">
@@ -11,8 +11,8 @@
               </v-col>
               <v-divider vertical></v-divider>
               <v-col cols="3">
-                達成した目標数<br />
-                10
+                現在の目標数<br />
+                {{ plans.length }}
               </v-col>
               <v-divider vertical></v-divider>
               <v-col cols="3">
@@ -35,27 +35,24 @@
         <StudyTime :userSkills="skills" @click_reload="reload" />
       </v-col>
       <v-col cols="8">
-        <v-card height="350" hover>
-          <v-card-title>今週の目標</v-card-title>
-          <v-card-text></v-card-text>
-        </v-card>
+        <MakePlan :userPlans="plans" />
       </v-col>
     </v-row>
     <v-row class="mt-10">
       <v-col cols="12">
         <v-card height="700">
-          <v-card-title>学習管理</v-card-title>
+          <v-card-title class="ml-3">学習管理</v-card-title>
+          <v-divider></v-divider>
           <v-card-text>
-            <v-row>
+            <v-row class="mt-2">
               <v-col cols="7">
-                <v-card hover height="480px">
+                <v-card height="550px">
                   <v-card-title>３日間の学習時間</v-card-title>
                   <StudyChart :userStudy="studies" />
                 </v-card>
               </v-col>
               <v-col cols="5">
-                <v-card hover height="480px">
-                  <v-card-title>学習時間TOP5</v-card-title>
+                <v-card height="420px">
                   <v-card-text v-if="studies.all > 0">
                     <SkillChart
                       :skillTime="skillSumTime"
@@ -63,11 +60,7 @@
                     />
                   </v-card-text>
                 </v-card>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col align="center">
-                <ul>
+                <ul height="90px" class="mt-3 ml-5 subtitle-1">
                   <li>
                     今週・・・・・・・・・・
                     {{ studies.week }}時間
@@ -77,11 +70,11 @@
                     {{ studies.month }}時間
                   </li>
                   <li>
-                    総学習時間・・・・・・・・
+                    総学習時間・・・・・・・
                     {{ studies.all }}時間
                   </li>
                   <li>
-                    総学習日数・・・・・・・・
+                    総学習日数・・・・・・・
                     {{ studies.studiesAllDate }}日
                   </li>
                 </ul>
@@ -98,6 +91,7 @@
 import StudyTime from "@/components/StudyTime.vue";
 import StudyChart from "@/components/StudyChart.vue";
 import SkillChart from "@/components/SkillChart.vue";
+import MakePlan from "@/components/MakePlan.vue";
 
 export default {
   async asyncData({ $axios }) {
@@ -105,17 +99,20 @@ export default {
     const skillData = await $axios.$get("/api/v1/skills");
     const studyData = await $axios.$get("/api/v1/studies");
     const noteData = await $axios.$get("/api/v1/notes");
+    const planData = await $axios.$get("/api/v1/plans");
     return {
       user: userData,
       skills: skillData,
       studies: studyData,
       notes: noteData,
+      plans: planData,
     };
   },
   components: {
     StudyTime,
     StudyChart,
     SkillChart,
+    MakePlan,
   },
   data() {
     return {
@@ -124,6 +121,7 @@ export default {
       studies: "",
       studiesAllDate: "",
       notes: "",
+      plans: "",
       msg: [
         "勉強お疲れ様です！",
         "今日も張り切っていきましょう！",
@@ -175,3 +173,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+ul {
+  list-style: none;
+}
+</style>

@@ -27,7 +27,7 @@
         >
       </v-col>
     </v-row>
-    <v-flex offset-xs1 xs5>
+    <v-flex offset-xs1 xs7>
       <v-card-text>
         <v-simple-table fixed-header height="250px">
           <template v-slot:default>
@@ -39,7 +39,7 @@
             </thead>
             <tbody>
               <tr v-for="skill in skills" :key="skill.id">
-                <td>{{ skill.name }}</td>
+                <td width="60%">{{ skill.name }}</td>
                 <td>
                   <v-btn
                     @click="deleteSkill(skill.id)"
