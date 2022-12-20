@@ -2,7 +2,16 @@
   <header>
     <v-app-bar color="white">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-toolbar-title>学習管理アプリ　Habits</v-toolbar-title>
+      <v-toolbar-title>
+        <v-img
+          v-bind:src="require('@/assets/images/logo.png')"
+          class="logo mr-3"
+        >
+        </v-img>
+      </v-toolbar-title>
+      <v-toolbar-title class="mr-10 text-h5 font"
+        ><span class="font-w"> Habits</span>
+      </v-toolbar-title>
       <!-- PC画面 -->
       <!-- ログインしている -->
       <v-tabs
@@ -125,7 +134,6 @@ export default {
 <style lang="scss" scoped>
 .v-toolbar__title {
   overflow: visible !important;
-  margin-right: 50px !important;
 }
 .v-app-bar__nav-icon {
   @include display_pc {
@@ -141,5 +149,12 @@ export default {
 }
 .item-space {
   padding: 3px;
+}
+.logo {
+  height: 40px;
+  width: 40px;
+}
+.font-w {
+  font-family: serif, sans-serif;
 }
 </style>

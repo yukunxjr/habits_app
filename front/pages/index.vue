@@ -4,7 +4,7 @@
       <v-card-title
         class="justify-center text-h2 font-weight-black white--text index"
       >
-        Habitsとは
+        <span class="font-f">Habits</span>とは
       </v-card-title>
       <v-card-text
         class="text-center text-h5 white--text font-weight-bold index mt-10"
@@ -12,7 +12,7 @@
         学習時間を計測・記録・管理し、勉強時間や勉強量を可視化できるアプリです!
       </v-card-text>
     </v-card>
-    <v-card height="500px" color="blue lighten-5">
+    <v-card height="500px" color="blue-grey lighten-5">
       <v-card-title class="justify-center text-h5 font-weight-bold pt-10">
         こんな方におすすめ！
       </v-card-title>
@@ -48,12 +48,12 @@
         Habitsをさっそく始めましょう！
       </v-card-title>
       <v-row justify="center">
-        <v-btn class="mt-5" color="error btn" large to="/users/signup"
-          >今すぐ無料会員登録</v-btn
-        >
+        <v-btn class="mt-5" color="error btn" large to="/users/signup">
+          今すぐ無料会員登録
+        </v-btn>
       </v-row>
     </v-card>
-    <v-card color="blue lighten-5" height="500px">
+    <v-card color="blue-grey lighten-5" height="500px">
       <v-card-title class="justify-center text-h5 font-weight-bold pt-10">
         このアプリの使い方
       </v-card-title>
@@ -148,6 +148,9 @@ export default {
   bottom: 0;
   position: absolute;
   right: 0;
+}
+.font-f {
+  font-family: serif, sans-serif;
 }
 
 @keyframes hekomu {
