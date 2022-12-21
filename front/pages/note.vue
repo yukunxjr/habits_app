@@ -1,8 +1,8 @@
 <template>
   <v-app id="inspire">
     <v-main class="blue-grey lighten-5 pt-10">
-      <v-row class="mx-16">
-        <v-col cols="3">
+      <v-row class="justify-center">
+        <v-col cols="3" md="3">
           <v-sheet>
             <v-list color="transparent" class="list">
               <v-list-item two-line>
@@ -50,7 +50,7 @@
         </v-col>
 
         <!-- 現在のノート -->
-        <v-col>
+        <v-col cols="9" md="7">
           <v-card min-height="74vh">
             <v-container>
               <v-card-title>

@@ -5,8 +5,8 @@
     <v-card-text>
       <v-form>
         <v-container>
-          <v-row class="ml-10 mt-2">
-            <v-col cols="3" md="7">
+          <v-row class="ml-6 mt-2">
+            <v-col cols="6" sm="4" md="8">
               <v-text-field
                 label="日付"
                 required
@@ -23,8 +23,8 @@
               <v-date-picker v-model="date" locale="”jp-ja”"></v-date-picker>
             </v-menu>
           </v-row>
-          <v-row class="ml-10">
-            <v-col cols="3" md="4">
+          <v-row class="ml-6">
+            <v-col cols="5" sm="3" md="5">
               <v-select
                 label="時間"
                 :items="hour"
@@ -33,14 +33,14 @@
                 class="text-h6"
               ></v-select>
             </v-col>
-            <v-col cols="3" md="6">
+            <v-col cols="6" sm="4" md="6">
               <v-select
                 v-model="skill"
                 label="スキル名"
                 :items="skills"
                 item-value="value"
                 item-text="name"
-                class="text-h7"
+                class="text-subtitle-1"
                 return-object
               ></v-select>
             </v-col>
@@ -76,7 +76,7 @@ export default {
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
         .substr(0, 10),
-      hour: [...Array(49)].map((v, i) => i / 2),
+      hour: [...Array(48)].map((v, i) => i / 2 + 0.5),
       time: "",
     };
   },

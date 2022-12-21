@@ -1,45 +1,47 @@
 <template>
-  <v-card class="my-10 mx-auto pa-5" max-width="70%" min-height="80%" outlined>
-    <v-dialog v-model="dialog" class="my-16 mx-auto pa-5" max-width="40%">
-      <TimerDialog @click_submit="return_data" @click_cancel="cancel">
+  <v-card class="mt-10 mx-auto timer" outlined>
+    <v-dialog v-model="dialog" class="mx-auto" max-width="600px">
+      <TimerDialog
+        @click_submit="return_data"
+        @click_cancel="cancel"
+        class="timer-dialog"
+      >
       </TimerDialog>
     </v-dialog>
-    <v-card-text class="mt-16">
-      <v-row class="text-center pa-16" justify="center">
-        <v-col cols="12" md="3">
-          <div class="timer mt-8" :v-model="hour">{{ hour | zeroPad }}</div>
-          <div class="text-h6 mt-14">hour</div>
+    <v-card-text class="mt-10">
+      <v-row class="text-center" justify="center">
+        <v-col cols="3" md="3">
+          <div class="timer-num" :v-model="hour">{{ hour | zeroPad }}</div>
+          <div class="timer-moment">hour</div>
         </v-col>
-        <v-col cols="12" md="1" class="text-h1">:</v-col>
-        <v-col cols="12" md="3">
-          <div class="timer mt-8" :v-model="min">{{ min | zeroPad }}</div>
-          <div class="text-h6 mt-14">min</div>
+        <v-col cols="1" md="1" class="timer-other">:</v-col>
+        <v-col cols="3" md="3">
+          <div class="timer-num" :v-model="min">{{ min | zeroPad }}</div>
+          <div class="timer-moment">min</div>
         </v-col>
-        <v-col cols="12" md="1" class="text-h1">:</v-col>
-        <v-col cols="12" md="3">
-          <div class="timer mt-8" :v-model="sec">{{ sec | zeroPad }}</div>
-          <div class="text-h6 mt-14">sec</div>
+        <v-col cols="1" md="1" class="timer-other">:</v-col>
+        <v-col cols="3" md="3">
+          <div class="timer-num" :v-model="sec">{{ sec | zeroPad }}</div>
+          <div class="timer-moment">sec</div>
         </v-col>
       </v-row>
     </v-card-text>
-    <v-row justify="center" align-content="center">
-      <v-card-actions class="mt-10">
+    <v-row justify="center" align-content="center" class="mt-10">
+      <v-card-actions>
         <v-btn
           @click="start"
           v-if="!timerOn"
-          min-width="120px"
-          large
           color="blue-grey"
-          class="mr-5 white--text"
+          class="mr-5 white--text btn"
+          large
         >
           スタート
         </v-btn>
         <v-btn
           @click="stop"
           v-if="timerOn"
-          min-width="120px"
           color="blue-grey"
-          class="white--text"
+          class="white--text btn"
           large
         >
           ストップ
@@ -47,9 +49,8 @@
         <v-btn
           @click="reset"
           v-if="!timerOn"
-          min-width="120px"
           color="blue-grey"
-          class="mr-5 white--text"
+          class="mr-5 white--text btn"
           large
         >
           リセット
@@ -57,10 +58,9 @@
         <v-btn
           @click.stop="dialog = true"
           v-if="!timerOn"
-          min-width="120px"
-          large
           color="blue-grey"
-          class="white--text"
+          class="white--text btn"
+          large
         >
           タイマー設定
         </v-btn>
@@ -181,6 +181,71 @@ export default {
 
 <style scoped>
 .timer {
-  font-size: 150px;
+  width: 100%;
+  padding: 20px 0 15px;
+}
+.timer-num {
+  font-size: 50px;
+}
+.timer-moment {
+  margin-top: 20px;
+}
+.btn {
+  margin-bottom: 30px;
+}
+.timer-other {
+  font-size: 50px;
+}
+@media screen and (min-width: 600px) {
+  /* 600px以上に適用されるCSS（タブレット用） */
+  .timer {
+    padding: 50px 20px 50px;
+    width: 90%;
+  }
+  .timer-num {
+    font-size: 80px;
+  }
+  .btn {
+    margin-top: 20px;
+  }
+}
+@media screen and (min-width: 960px) {
+  /* 960px以上に適用されるCSS（PC用） */
+  .timer {
+    padding: 80px 80px 80px;
+    width: 90%;
+  }
+  .timer-num {
+    font-size: 120px;
+  }
+  .timer-moment {
+    margin-top: 50px;
+    font-size: 20px;
+  }
+
+  .btn {
+    width: 120px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  /* 1200px以上に適用されるCSS（大型PC用） */
+  .timer {
+    padding: 140px 80px 100px;
+    width: 80%;
+  }
+  .timer-num {
+    font-size: 150px;
+  }
+  .timer-moment {
+    font-size: 30px;
+    margin: 80px 0 0;
+  }
+  .timer-other {
+    font-size: 120px;
+  }
+  .btn {
+    margin-top: 30px;
+    width: 120px;
+  }
 }
 </style>

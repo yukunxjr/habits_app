@@ -5,21 +5,23 @@
         <v-card height="150px">
           <v-card-text>
             <v-row class="mt-6">
+              <v-col cols="0" sm="3" class="d-none d-sm-block">
+                {{ user.name }}さん<br />
+                {{ randomMsg }}
               <v-col cols="3">
-
               </v-col>
-              <v-divider vertical></v-divider>
-              <v-col cols="3">
+              <v-divider vertical class="d-none d-sm-block"></v-divider>
+              <v-col cols="4" sm="3">
                 現在の目標数<br />
                 {{ plans.length }}
               </v-col>
               <v-divider vertical></v-divider>
-              <v-col cols="3">
+              <v-col cols="4" sm="3">
                 総ノート数<br />
                 {{ notes.length }}
               </v-col>
               <v-divider vertical></v-divider>
-              <v-col cols="3">
+              <v-col cols="4" sm="3">
                 総学習時間<br />
                 {{ studies.all }}時間
               </v-col>
@@ -30,28 +32,28 @@
       </v-col>
     </v-row>
     <v-row class="mt-10" justify="center" align-content="center">
-      <v-col cols="4">
+      <v-col cols="12" sm="8" md="4">
         <StudyTime :userSkills="skills" @click_reload="reload" />
       </v-col>
-      <v-col cols="8">
+      <v-col cols="12" md="8">
         <MakePlan :userPlans="plans" />
       </v-col>
     </v-row>
     <v-row class="mt-10">
       <v-col cols="12">
-        <v-card height="700">
+        <v-card>
           <v-card-title class="ml-3">学習管理</v-card-title>
           <v-divider></v-divider>
           <v-card-text>
             <v-row class="mt-2">
-              <v-col cols="7">
-                <v-card height="550px">
-                  <v-card-title>３日間の学習時間</v-card-title>
+              <v-col cols="12" md="7">
+                <v-card height="600px">
+                  <v-card-title class="mb-10">３日間の学習時間</v-card-title>
                   <StudyChart :userStudy="studies" />
                 </v-card>
               </v-col>
-              <v-col cols="5">
-                <v-card height="420px">
+              <v-col cols="12" md="5">
+                <v-card>
                   <v-card-text v-if="studies.all > 0">
                     <SkillChart
                       :skillTime="skillSumTime"

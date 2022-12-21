@@ -2,23 +2,23 @@
   <v-container fluid class="ma-0 pa-0">
     <v-card height="700px" class="bgimg">
       <v-card-title
-        class="justify-center text-h2 font-weight-black white--text index"
+        class="justify-center text-h2 font-weight-black white--text index title"
       >
         <span class="font-f">Habits</span>とは
       </v-card-title>
       <v-card-text
-        class="text-center text-h5 white--text font-weight-bold index mt-10"
+        class="text-center text-body-2 text-sm-h5 white--text font-weight-bold index mt-10"
       >
         学習時間を計測・記録・管理し、勉強時間や勉強量を可視化できるアプリです!
       </v-card-text>
     </v-card>
-    <v-card height="500px" color="blue-grey lighten-5">
+    <v-card color="blue-grey lighten-5">
       <v-card-title class="justify-center text-h5 font-weight-bold pt-10">
         こんな方におすすめ！
       </v-card-title>
       <v-card-text class="text-center text-subtitle-1">
         <v-row class="black--text mt-12 mx-16">
-          <v-col cols="4" align="center">
+          <v-col cols="12" sm="4" md="4" align="center">
             <v-img
               v-bind:src="require('@/assets/images/top1.png')"
               class="recommendationImg"
@@ -26,25 +26,27 @@
             </v-img>
             <p class="mt-5">勉強のやる気が出ないと悩んでいる人</p>
           </v-col>
-          <v-col cols="4" align="center">
+          <v-col cols="12" sm="4" md="4" align="center">
             <v-img
               v-bind:src="require('@/assets/images/top2.png')"
               class="recommendationImg"
             ></v-img>
             <p class="mt-5">学習効率をあげたいと思っている人</p>
           </v-col>
-          <v-col cols="4" align="center">
+          <v-col cols="12" sm="4" md="4" align="center">
             <v-img
               v-bind:src="require('@/assets/images/top3.png')"
               class="recommendationImg"
             ></v-img>
-            <p class="mt-5">勉強を習慣化したい！けどなかなか続かない人</p>
+            <p class="mt-5 mb-15">勉強を習慣化したい！けどなかなか続かない人</p>
           </v-col>
         </v-row>
       </v-card-text>
     </v-card>
     <v-card color="orange lighten-4" height="200px" class="pt-8">
-      <v-card-title class="justify-center red--text text-h5 font-weight-black">
+      <v-card-title
+        class="justify-center red--text text-h6 text-sm-h5 font-weight-black"
+      >
         Habitsをさっそく始めましょう！
       </v-card-title>
       <v-row justify="center">
@@ -53,44 +55,43 @@
         </v-btn>
       </v-row>
     </v-card>
-    <v-card color="blue-grey lighten-5" height="500px">
+    <v-card color="blue-grey lighten-5 mb-10">
       <v-card-title class="justify-center text-h5 font-weight-bold pt-10">
         このアプリの使い方
       </v-card-title>
       <v-card-text class="text-subtitle-1">
         <v-row class="justify-center mt-8 mx-10">
-          <v-col cols="3">
+          <v-col cols="12" sm="6" md="3">
             <v-card height="220px" color="light-blue lighten-3">
               <v-card-title class="justify-center step">STEP 1</v-card-title>
-              <v-card-text class="text-subtitle-1">
+              <v-card-text class="text-sm-subtitle-1 text-body-1">
                 目標を設定しよう！<br />
                 最初はできるだけ達成しやすい目標を立てましょう！
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="3">
+          <v-col cols="12" sm="6" md="3">
             <v-card height="220px" color="light-blue lighten-3">
               <v-card-title class="justify-center step">STEP 2</v-card-title>
-              <v-card-text class="text-subtitle-1">
+              <v-card-text class="text-sm-subtitle-1 text-body-1">
                 学習しているスキルを登録しよう！<br />
                 より詳細に設定しましょう！
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="3">
+          <v-col cols="12" sm="6" md="3">
             <v-card height="220px" color="light-blue lighten-3">
               <v-card-title class="justify-center step">STEP 3</v-card-title>
-              <v-card-text class="text-subtitle-1">
-                タイマー機能で学習時間を計測、<br />
-                ノート機能で覚えたこと、分かったことを記録しよう！<br />
+              <v-card-text class="text-sm-subtitle-1 text-body-1">
+                タイマー機能で学習時間を計測、ノート機能で覚えたこと、分かったことを記録しよう！<br />
                 さまざまな機能活用して学習の効率化を図ろう！<br />
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="3">
-            <v-card height="220px" color="light-blue lighten-3">
+          <v-col cols="12" sm="6" md="3">
+            <v-card height="220px" color="light-blue lighten-3 mb-15">
               <v-card-title class="justify-center step">STEP 4</v-card-title>
-              <v-card-text class="text-subtitle-1">
+              <v-card-text class="text-sm-subtitle-1 text-body-1">
                 学習した時間を入力し、<br />
                 グラフを基に、自分の学習を見直しましょう！
               </v-card-text>
@@ -110,7 +111,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .bgimg {
   background-image: url("~@/assets/images/main4.jpg");
   background-size: cover;
@@ -127,6 +128,8 @@ export default {
 .index {
   position: relative;
   text-align: center;
+}
+.title {
   padding-top: 280px;
 }
 .btn {
