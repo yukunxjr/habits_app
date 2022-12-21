@@ -23,6 +23,7 @@
     "vue-circular-count-down-timer": "^2.0.0"
   },
   "devDependencies": {
+    "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/vuetify": "^1.0.0"
   }
 }

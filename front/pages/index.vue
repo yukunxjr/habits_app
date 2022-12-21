@@ -61,38 +61,43 @@
       </v-card-title>
       <v-card-text class="text-subtitle-1">
         <v-row class="justify-center mt-8 mx-10">
-          <v-col cols="12" sm="6" md="3">
-            <v-card height="220px" color="light-blue lighten-3">
+          <v-col cols="12" sm="6" lg="3">
+            <v-card height="230px" color="light-blue lighten-3">
               <v-card-title class="justify-center step">STEP 1</v-card-title>
               <v-card-text class="text-sm-subtitle-1 text-body-1">
-                目標を設定しよう！<br />
-                最初はできるだけ達成しやすい目標を立てましょう！
+                <span class="font-w">目標</span>を設定しよう！<br />
+                最初はできるだけ<span class="font-w">達成しやすい目標</span
+                >を立てましょう！
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" sm="6" md="3">
-            <v-card height="220px" color="light-blue lighten-3">
+          <v-col cols="12" sm="6" lg="3">
+            <v-card height="230px" color="light-blue lighten-3">
               <v-card-title class="justify-center step">STEP 2</v-card-title>
               <v-card-text class="text-sm-subtitle-1 text-body-1">
-                学習しているスキルを登録しよう！<br />
+                <span class="font-w">学習しているスキルを登録</span>
+                しよう！<br />
                 より詳細に設定しましょう！
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" sm="6" md="3">
-            <v-card height="220px" color="light-blue lighten-3">
+          <v-col cols="12" sm="6" lg="3">
+            <v-card height="230px" color="light-blue lighten-3">
               <v-card-title class="justify-center step">STEP 3</v-card-title>
               <v-card-text class="text-sm-subtitle-1 text-body-1">
-                タイマー機能で学習時間を計測、ノート機能で覚えたこと、分かったことを記録しよう！<br />
-                さまざまな機能活用して学習の効率化を図ろう！<br />
+                <span class="font-w">タイマー機能 </span>
+                で学習時間を計測、<span class="font-w">ノート機能</span
+                >で覚えたこと、分かったことを記録しよう！<br />
+                さまざまな機能活用して<span class="font-w">学習の効率化</span>
+                を図ろう！<br />
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" sm="6" md="3">
-            <v-card height="220px" color="light-blue lighten-3 mb-15">
+          <v-col cols="12" sm="6" lg="3">
+            <v-card height="230px" color="light-blue lighten-3 mb-15">
               <v-card-title class="justify-center step">STEP 4</v-card-title>
               <v-card-text class="text-sm-subtitle-1 text-body-1">
-                学習した時間を入力し、<br />
+                <span class="font-w">学習した時間を入力</span>し、<br />
                 グラフを基に、自分の学習を見直しましょう！
               </v-card-text>
             </v-card>
@@ -154,6 +159,10 @@ export default {
 }
 .font-f {
   font-family: serif, sans-serif;
+}
+.font-w {
+  font-weight: bold;
+  border-bottom: 1px solid black;
 }
 
 @keyframes hekomu {
