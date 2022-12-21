@@ -8,6 +8,7 @@
               <v-col cols="0" sm="3" class="d-none d-sm-block">
                 {{ user.name }}さん<br />
                 {{ randomMsg }}
+              <v-col cols="3">
               </v-col>
               <v-divider vertical class="d-none d-sm-block"></v-divider>
               <v-col cols="4" sm="3">
@@ -84,6 +85,7 @@
         </v-card>
       </v-col>
     </v-row>
+
   </v-container>
 </template>
 
@@ -131,6 +133,8 @@ export default {
         "継続は力なり",
         "勉強を習慣に！",
       ],
+    
+
     };
   },
   methods: {
@@ -146,12 +150,14 @@ export default {
     skillSumTime() {
       let top5 = [];
       let dummy = { skill_name: "-", value: 0 };
+
       let obj = this.studies.skill;
       let array = Object.keys(obj).map((k) => ({
         skill_name: this.skillId(Number(k)),
         value: obj[k],
       }));
       array.sort((a, b) => b.value - a.value);
+
       for (let i = 0; i < array.length; ++i) {
         if (top5.length > 5) {
           top5.pop();
@@ -169,6 +175,11 @@ export default {
     randomMsg() {
       const msgNum = Math.floor(Math.random() * this.msg.length);
       return this.msg[msgNum];
+      for (let i = 0; i < 5; ++i) {
+        this.top5.push(array[i]);
+      }
+      return this.top5;
+
     },
   },
 };
