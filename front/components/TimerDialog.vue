@@ -1,11 +1,11 @@
 <template>
   <v-card>
-    <v-card-title class="text-h4">学習時間入力</v-card-title>
+    <v-card-title class="text-h6 text-md-h4">学習時間入力</v-card-title>
     <v-divider></v-divider>
     <v-card-text class="mt-5">
       <v-container>
         <v-row>
-          <v-col cols="6">
+          <v-col cols="8" sm="5" md="6">
             <v-select
               label="時間"
               v-model="return_data.hour"
@@ -17,7 +17,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="6">
+          <v-col cols="8" sm="5" md="6">
             <v-select
               label="分"
               v-model="return_data.min"
@@ -29,7 +29,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="6">
+          <v-col cols="8" sm="5" md="6">
             <v-select
               label="秒"
               v-model="return_data.sec"

@@ -10,9 +10,14 @@ $sm: 960;
 $md: 1264;
 $lg: 1904;
 
+// 599以下　スマホ
 $sp-max: calc($xs - 1) px;
+
+// 600以上959以下　タブレット
 $tb-min: $xs + px;
 $tb-max: calc($sm - 1) px;
+
+// 960以上　PC
 $pc-min: $sm + px;
 
 /* PC */

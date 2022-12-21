@@ -10,7 +10,7 @@
         </v-img>
       </v-toolbar-title>
       <v-toolbar-title class="mr-10 text-h5 font"
-        ><span class="font-w"> Habits</span>
+        ><span class="font-f"> Habits</span>
       </v-toolbar-title>
       <!-- PC画面 -->
       <!-- ログインしている -->
@@ -154,7 +154,7 @@ export default {
   height: 40px;
   width: 40px;
 }
-.font-w {
+.font-f {
   font-family: serif, sans-serif;
 }
 </style>

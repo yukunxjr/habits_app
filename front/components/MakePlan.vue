@@ -1,5 +1,5 @@
 <template>
-  <v-card height="400">
+  <v-card height="400px">
     <v-card-title class="ml-3">
       目標設定
       <v-spacer></v-spacer>
@@ -20,7 +20,7 @@
                 required
                 class="mt-15 mx-15"
                 label="目標を入力してください"
-                :rules="[rules.nameLength, rules.required]"
+                :rules="[rules.required]"
                 :counter="25"
               />
             </v-form>
@@ -39,11 +39,11 @@
     </v-card-title>
     <v-divider></v-divider>
     <v-card-text>
-      <v-list class="text-h6 list">
+      <v-list class="text-body-2 text-sm-h6 list">
         <v-list-item
           v-for="plan in plans"
           :key="plan.id"
-          class="mx-8 border mt-1"
+          class="mx-6 border mt-1"
         >
           {{ plan.content }}
           <v-spacer></v-spacer>
@@ -71,7 +71,6 @@ export default {
       plans: this.userPlans,
       content: "",
       rules: {
-        required: (value) => !!value || "入力してください",
         nameLength: (value) =>
           value.length <= 25 || "25文字以内で入力してください",
       },
@@ -115,7 +114,7 @@ export default {
   border-radius: 9px;
 }
 .list {
-  height: 40vh;
+  height: 35vh;
   overflow-y: auto;
 }
 </style>
