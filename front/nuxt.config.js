@@ -30,11 +30,15 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/axios.js"],
+  plugins: ["~/plugins/axios.js", "~/plugins/format-date.js"],
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ["@nuxtjs/vuetify"],
+  buildModules: ["@nuxtjs/vuetify", "@nuxtjs/moment"],
+
+  moment: {
+    locales: ["ja"],
+  },
   /*
    ** Nuxt.js modules
    */

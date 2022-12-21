@@ -8,6 +8,12 @@
               <v-list-item two-line>
                 <v-list-item-title class="title"> MyNote </v-list-item-title>
                 <v-spacer></v-spacer>
+                <v-btn icon @click="changeOrderOn" v-if="!sortOn">
+                  <v-icon>mdi-sort-calendar-descending</v-icon>
+                </v-btn>
+                <v-btn icon @click="changeOrderOff" v-if="sortOn">
+                  <v-icon>mdi-sort-calendar-ascending</v-icon>
+                </v-btn>
                 <v-dialog v-model="dialogTrashCan" width="800px">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn icon v-bind="attrs" v-on="on">
@@ -31,7 +37,7 @@
               </v-list-item>
               <v-divider class="my-2"></v-divider>
               <v-list-item
-                v-for="note in notes"
+                v-for="note in reverseNotes"
                 :key="note.id"
                 @click="setNote(note)"
                 two-line
@@ -41,7 +47,7 @@
                     {{ note.title }}
                   </v-list-item-title>
                   <v-list-item-subtitle
-                    >{{ note.updated_at }}
+                    >{{ note.updated_at | format_date }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -110,6 +116,8 @@ export default {
       dialogEdit: false,
       dialogTrashCan: false,
       currentNote: "",
+      sortOrder: 1,
+      sortOn: true,
     };
   },
   async asyncData({ $axios }) {
@@ -120,7 +128,6 @@ export default {
   methods: {
     setNote(note) {
       this.currentNote = note;
-      // console.log(Object.entries(this.currentNote));
     },
     cancel() {
       location.reload();
@@ -143,6 +150,25 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    changeOrderOff() {
+      this.sortOrder = this.sortOrder > 0 ? -1 : 1;
+      this.sortOn = false;
+    },
+    changeOrderOn() {
+      this.sortOrder = this.sortOrder > 0 ? -1 : 1;
+      this.sortOn = true;
+    },
+  },
+  computed: {
+    reverseNotes() {
+      return this.notes.sort((a, b) => {
+        return a.updated_at > b.updated_at
+          ? -this.sortOrder
+          : a.updated_at < b.updated_at
+          ? this.sortOrder
+          : 0;
+      });
     },
   },
 };

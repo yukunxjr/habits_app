@@ -231,7 +231,7 @@ export default {
   /* 1200px以上に適用されるCSS（大型PC用） */
   .timer {
     padding: 140px 80px 100px;
-    width: 80%;
+    width: 70%;
   }
   .timer-num {
     font-size: 150px;
