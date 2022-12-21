@@ -84,6 +84,14 @@
               {{ Item.name }}
             </nuxt-link>
           </v-list-item>
+          <v-list-item>
+            <nuxt-link
+              to="/users/account"
+              class="text-decoration-none grey--text"
+            >
+              ACCOUNT
+            </nuxt-link>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>

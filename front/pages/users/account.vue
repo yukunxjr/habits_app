@@ -2,8 +2,19 @@
   <v-app id="inspire">
     <v-main class="blue-grey lighten-5 pt-10">
       <v-container>
-        <v-row>
-          <v-col cols="3">
+        <v-row class="justify-center">
+          <v-col cols="12" sm="10" class="d-md-none">
+            <v-card class="mb-5">
+              <component
+                v-bind:is="currentComponent"
+                :currentUser="user"
+                :userSkills="skill"
+                @click_reload="reload"
+              >
+              </component>
+            </v-card>
+          </v-col>
+          <v-col cols="8" sm="6" md="3" class="mb-15">
             <v-sheet rounded="lg">
               <v-list color="transparent">
                 <v-list-item link>
@@ -40,7 +51,7 @@
             </v-sheet>
           </v-col>
 
-          <v-col>
+          <v-col cols="12" md="9" class="d-none d-md-block">
             <v-card min-height="70vh" rounded="lg">
               <component
                 v-bind:is="currentComponent"
@@ -77,7 +88,7 @@ export default {
     Items: [
       { name: "アカウント編集", components: "Email" },
       { name: "パスワード変更", components: "Password" },
-      { name: "スキル編集", components: "Skills" },
+      { name: "スキル設定", components: "Skills" },
       { name: "アカウント削除", components: "drawal" },
     ],
     currentComponent: "Email",

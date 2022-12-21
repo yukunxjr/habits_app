@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-container>
     <v-card-title>
       <h3 class="display-1">プロフィール</h3>
@@ -28,4 +28,4 @@ export default {
     };
   },
 };
-</script>
+</script> -->

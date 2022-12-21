@@ -1,11 +1,11 @@
 <template>
   <v-container>
-    <v-card-title>
-      <h3 class="display-1">アカウント編集</h3>
+    <v-card-title class="display-1 text-h6 text-md-h5">
+      アカウント編集
     </v-card-title>
-    <v-divider></v-divider>
-    <v-row class="my-15" no-gutters>
-      <v-col md="5" offset-md="2">
+    <v-divider class="mb-10 d-none d-sm-block"></v-divider>
+    <v-row no-gutters class="justify-center">
+      <v-col cols="12" sm="8" md="7">
         <v-card-text>
           <v-form ref="form" lazy-validation>
             <v-text-field
@@ -17,7 +17,7 @@
           </v-form>
         </v-card-text>
       </v-col>
-      <v-col md="5" offset-md="2">
+      <v-col cols="12" sm="8" md="7">
         <v-card-text>
           <v-form ref="form">
             <v-text-field
@@ -29,9 +29,14 @@
           </v-form>
         </v-card-text>
       </v-col>
-      <v-col md="5" offset-md="6" class="mt-3">
+      <v-col cols="12" sm="9">
         <v-card-actions>
-          <v-btn color="blue-grey" class="white--text" @click="editNameEmail">
+          <v-spacer></v-spacer>
+          <v-btn
+            color="blue-grey"
+            class="white--text mb-5"
+            @click="editNameEmail"
+          >
             保存する
           </v-btn>
         </v-card-actions>
