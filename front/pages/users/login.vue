@@ -61,9 +61,28 @@ export default {
           },
         })
         .then(
-          (response) => {},
+          () => {
+            this.$store.dispatch(
+              "flashMessage/showMessage",
+              {
+                message: "ログインしました。",
+                type: "primary",
+                status: true,
+              },
+              { root: true }
+            );
+          },
           (error) => {
-            this.error = error.response.data.errors;
+            this.$store.dispatch(
+              "flashMessage/showMessage",
+              {
+                message:
+                  "ログインに失敗しました！お手数ですが再度お試しください",
+                type: "error",
+                status: true,
+              },
+              { root: true }
+            );
           }
         );
     },
