@@ -4,12 +4,12 @@
 
     <v-card-text>
       <v-form>
-        <v-text-field v-model="title" label="タイトル" class="ma-5" />
+        <v-text-field v-model="title" label="タイトル" class="ma-2" />
         <v-textarea
           v-model="body"
           outlined
           type="text"
-          class="mx-5"
+          class="mx-2"
           height="300"
         />
       </v-form>

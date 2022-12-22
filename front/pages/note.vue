@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <v-main class="blue-grey lighten-5 pt-10">
       <v-row class="justify-center">
-        <v-col cols="3" md="3">
+        <v-col cols="11" sm="6" md="3">
           <v-sheet>
             <v-list color="transparent" class="list">
               <v-list-item two-line>
@@ -34,6 +34,18 @@
                   </template>
                   <CreateNote @click_cancel="cancel" @click_reload="reload" />
                 </v-dialog>
+                <v-dialog v-model="dialogEdit" width="800px" v-if="currentNote">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn v-bind="attrs" v-on="on" icon class="d-md-none">
+                      <v-icon>mdi-pencil</v-icon>
+                    </v-btn>
+                  </template>
+                  <EditNote
+                    :note="currentNote"
+                    @click_cancel="cancel"
+                    @click_reload="reload"
+                  />
+                </v-dialog>
               </v-list-item>
               <v-divider class="my-2"></v-divider>
               <v-list-item
@@ -42,21 +54,40 @@
                 @click="setNote(note)"
                 two-line
               >
-                <v-list-item-content>
-                  <v-list-item-title>
-                    {{ note.title }}
-                  </v-list-item-title>
-                  <v-list-item-subtitle
-                    >{{ note.updated_at | format_date }}
-                  </v-list-item-subtitle>
-                </v-list-item-content>
+                <v-row class="pl-2 pr-4 nowrap">
+                  <v-col cols="9" md="12">
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        {{ note.title }}
+                      </v-list-item-title>
+                      <v-list-item-subtitle
+                        >{{ note.updated_at | format_date }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-col>
+
+                  <!-- レスポンシブ -->
+                  <v-col cols="2" class="d-md-none">
+                    <v-spacer></v-spacer>
+                    <v-list-item-action>
+                      <v-btn
+                        @click="discardNote(note.id)"
+                        class="white--text mt-2"
+                        color="blue-grey"
+                        small
+                      >
+                        削除
+                      </v-btn>
+                    </v-list-item-action>
+                  </v-col>
+                </v-row>
               </v-list-item>
             </v-list>
           </v-sheet>
         </v-col>
 
         <!-- 現在のノート -->
-        <v-col cols="9" md="7">
+        <v-col cols="7" class="d-none d-md-block">
           <v-card min-height="74vh">
             <v-container>
               <v-card-title>
@@ -69,7 +100,7 @@
             </v-container>
           </v-card>
 
-          <!-- 編集ボタン -->
+          <!-- 編集、削除ボタン -->
           <v-row class="justify-end mt-3 mr-3" v-if="currentNote">
             <v-dialog v-model="dialogEdit" width="800px">
               <template v-slot:activator="{ on, attrs }">
@@ -104,16 +135,18 @@
 
 <script>
 import EditNote from "@/components/Note/EditNote.vue";
+import EditNoteResponsive from "@/components/Note/EditNoteResponsive.vue";
 import CreateNote from "@/components/Note/CreateNote.vue";
 import Trashcan from "@/components/Note/Trashcan.vue";
 export default {
-  components: { EditNote, CreateNote, Trashcan },
+  components: { EditNote, EditNoteResponsive, CreateNote, Trashcan },
   data() {
     return {
       notes: [],
       dels: [],
       dialog: false,
       dialogEdit: false,
+      dialogEditResponsive: false,
       dialogTrashCan: false,
       currentNote: "",
       sortOrder: 1,
@@ -179,5 +212,8 @@ export default {
   height: 80vh;
   overflow-y: auto;
 }
+.nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+}
 </style>
--->
