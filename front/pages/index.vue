@@ -77,7 +77,8 @@
               <v-card-text class="text-sm-subtitle-1 text-body-1">
                 <span class="font-w">学習しているスキルを登録</span>
                 しよう！<br />
-                より詳細に設定しましょう！
+                <span class="font-w">より詳細に設定</span>しましょう！<br />
+                ログイン後、[ACCOUNT]＞[スキル設定]から設定します。
               </v-card-text>
             </v-card>
           </v-col>
