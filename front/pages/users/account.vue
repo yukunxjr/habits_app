@@ -102,6 +102,15 @@ export default {
         localStorage.removeItem("uid");
         localStorage.removeItem("token-type");
       });
+      this.$store.dispatch(
+        "flashMessage/showMessage",
+        {
+          message: "ログアウトしました！",
+          type: "primary",
+          status: true,
+        },
+        { root: true }
+      );
     },
     reload() {
       location.reload();

@@ -102,8 +102,26 @@ export default {
             password: this.password,
           },
         });
+        this.$store.dispatch(
+          "flashMessage/showMessage",
+          {
+            message: "初めまして！一緒に学習していきましょう！",
+            type: "primary",
+            status: true,
+          },
+          { root: true }
+        );
       } catch (e) {
         this.error = e.response.data.errors.full_messages;
+        this.$store.dispatch(
+          "flashMessage/showMessage",
+          {
+            message: this.error.join(),
+            type: "error",
+            status: true,
+          },
+          { root: true }
+        );
       }
     },
   },
