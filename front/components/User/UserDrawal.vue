@@ -1,20 +1,22 @@
 <template>
   <v-container>
-    <v-card-title>
-      <h3 class="display-1">アカウント削除</h3>
+    <v-card-title class="display-1 text-h6 text-md-h5">
+      アカウント削除
     </v-card-title>
-    <v-divider></v-divider>
-    <v-row class="my-15" no-gutters>
-      <v-col md="7" offset-md="2">
+    <v-divider class="mb-10 d-none d-sm-block"></v-divider>
+    <v-row class="justify-center" no-gutters>
+      <v-col cols="12" sm="9">
         <v-card-text class="text-h5 font-weight-bold">
           必ずご確認ください！<br />
           アカウントを削除すると、これまでのデータ（NoteやUserの情報等）はすべて削除されます。<br />
           よろしければ次へお進みください！
         </v-card-text>
       </v-col>
-      <v-col md="5" offset-md="6" class="mt-3">
+    </v-row>
+    <v-row>
+      <v-col cols="12">
         <v-card-actions>
-          <v-btn @click="deleteUser" depressed color="error">
+          <v-btn @click="deleteUser" depressed color="error" class="ma-auto">
             アカウントを削除する</v-btn
           >
         </v-card-actions>

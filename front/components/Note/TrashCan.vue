@@ -11,21 +11,25 @@
       </span>
     </v-card-title>
 
-    <v-card-text>
+    <v-card-text class="px-2 py-2">
       <v-list-item v-for="note in notes" :key="note.id">
+        <span class="d-none d-sm-block mr-5">
+          {{ note.updated_at | format_date }}
+        </span>
         <v-list-item-content>
           <v-list-item-title>
-            {{ note.updated_at }}{{ note.title }}
+            {{ note.title }}
           </v-list-item-title>
         </v-list-item-content>
         <v-btn
           @click="restorationNote(note.id)"
           color="blue-grey"
           class="white--text mr-3"
+          small
         >
           復元
         </v-btn>
-        <v-btn @click="removeNote(note.id)" class="error">削除</v-btn>
+        <v-btn @click="removeNote(note.id)" class="error" small>削除</v-btn>
       </v-list-item>
     </v-card-text>
   </v-card>
@@ -52,6 +56,7 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+      this.$emit("click_reload");
     },
     cancel() {
       this.$emit("click_reload");
@@ -66,6 +71,7 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+      this.$emit("click_reload");
     },
   },
 };

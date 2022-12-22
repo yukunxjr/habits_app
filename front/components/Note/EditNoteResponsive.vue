@@ -1,26 +1,23 @@
 <template>
   <v-card>
-    <v-card-title class="text-h5 grey lighten-2">
-      ノートの新規作成
-    </v-card-title>
+    <v-card-title class="text-h5 grey lighten-2"> ノートの編集 </v-card-title>
 
     <v-card-text>
       <v-form>
-        <v-text-field v-model="title" label="タイトル" class="ma-2" />
+        <v-text-field v-model="title" label="タイトル" class="ma-1" />
         <v-textarea
           v-model="body"
           outlined
           type="text"
-          class="mx-2"
+          class="mx-1"
           height="300"
-          :counter="1000"
         />
       </v-form>
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="primary" text @click="cancel"> キャンセル </v-btn>
-        <v-btn color="primary" text @click="addNote"> 保存 </v-btn>
+        <v-btn color="primary" text @click="editNote"> 保存 </v-btn>
       </v-card-actions>
     </v-card-text>
   </v-card>
@@ -28,18 +25,31 @@
 
 <script>
 export default {
+  props: {
+    note: {
+      type: Object,
+      default: "",
+    },
+  },
   data() {
     return {
-      title: "",
-      body: "",
+      id: this.note.id,
+      title: this.note.title,
+      body: this.note.body,
     };
   },
   methods: {
-    addNote() {
+    editNote() {
       this.$axios
-        .$post("/api/v1/notes", { title: this.title, body: this.body })
+        .$put(`/api/v1/notes/${this.id}`, {
+          title: this.title,
+          body: this.body,
+        })
         .then((res) => {
-          this.$parent.notes.push(res);
+          const notes = this.$parent.notes.map((l) => {
+            return l.id === this.id ? res : l;
+          });
+          this.$parent.notes = notes;
         })
         .catch((err) => {
           console.log(err);
