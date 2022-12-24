@@ -1,14 +1,14 @@
 # Habits_app
 
----
-
 ## TOP-Image
+
+<img width="1424" alt="habits_app_main_image" src="https://user-images.githubusercontent.com/109594942/209146779-d2fa64b0-52b4-4b22-937b-55a2178f6252.png">
+
+## URL
 
 ## 概要
 
 勉強時間を計測及び管理し、勉強時間や勉強量を可視化できるアプリです。
-
-## URL
 
 ##　開発に至った背景
 
@@ -20,48 +20,53 @@
 
 ## 機能一覧
 
-ユーザー管理機能(devise)
-新規投稿機能
-投稿一覧ページ
-投稿詳細ページ
-投稿編集機能
-投稿削除機能
-タグ付け機能
-タグ検索
-フリーワード検索
-条件検索機能(ransack)
-コメント機能
-お気に入り機能(非同期通信)
-お気に入り一覧機能
+*ユーザー管理機能(devise)
+*ノート機能（一覧リスト、詳細ページ、編集機能、ゴミ箱機能、削除機能）
+*タイマー機能
+*目標設定機能
+*スキル設定機能
+*学習時間登録機能 \*学習管理機能（棒グラフ、円グラフ）
+*フラッシュメッセージ機能
+*バリデーション機能 \*ログイン前後のリダイレクト機能
 
 ## 環境・使用技術
 
 ### フロントエンド
 
-HTML
-SCSS
-JavaScript(swiper.js, jquery)
+*CSS/SCSS
+*Nuxt 2.0.0
+
+###　主要パッケージ
+
+\*chart.js/vuetify/moment/vee-validate
 
 ### バックエンド
 
-Ruby 2.6.5
-Rails 6.0.0
+*Ruby 2.7.6
+*Rails 6.1.7
+
+### 主要 gem
+
+\*devise/devise_token_auth/devise-i18n/discard
+
+### Nuxt.js と Rails の連携
+
+\*Axios/Auth Module
 
 ### 開発環境
 
-MySQL
+MySQL 8.0.31
 
 ### 本番環境
 
-AWS(EC2,S3,Route53)
-MariaDB
-Capistrano(自動デプロイ)
+AWS(ECS,S3,Route53)
+RDB(AmazonAurora)
 
 ### ソースコード管理
 
 GitHub
 
-### テスト
+### テスト(バックエンド側のみ)
 
 RSpec(単体・結合)
 FactoryBot
@@ -73,10 +78,6 @@ FactoryBot
 
 ### 工夫した点
 
-トップページを開いた時点でどんなサービスなのか直感的に分かりやすい UI を意識した実装
-モバイルファーストでの実装を意識
-ユーザーにオシャレに関心のある人を想定しているので、スタイリッシュな UI を意識した実装
-検索のバリエーションを増やすことで、色々な条件で検索できるように実装
-自身がお気に入りにしたものをいつでも見返すことができるように実装
+1.配色 2. 3. 4. 5.
 
 ### ER 図
