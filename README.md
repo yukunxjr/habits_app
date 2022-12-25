@@ -59,7 +59,7 @@ MySQL 8.0.31
 
 ### 本番環境
 
-AWS(ECS,S3,Route53)
+AWS(ECR,ECS,S3,Route53,ALB)
 RDB(AmazonAurora)
 
 ### ソースコード管理
