@@ -22,8 +22,7 @@
       >
         <v-tab v-for="(Item, index) in Items" :key="index" class="text-h6">
           <nuxt-link :to="Item.url" class="text-decoration-none grey--text">
-            <v-icon>{{ Item.icon }}</v-icon>
-            <span class="item-space"> </span>
+            <v-icon class="pr-3">{{ Item.icon }}</v-icon>
             {{ Item.name }}
           </nuxt-link>
         </v-tab>
@@ -32,8 +31,7 @@
             to="/users/account"
             class="text-decoration-none grey--text text-h6"
           >
-            <v-icon>mdi-account-circle</v-icon>
-            <span class="item-space"> </span>
+            <v-icon class="pr-3">mdi-account-circle</v-icon>
             ACCOUNT
           </nuxt-link>
         </v-tab>
@@ -47,15 +45,13 @@
       >
         <v-tab class="text-h6">
           <nuxt-link to="/" class="text-decoration-none grey--text">
-            <v-icon>mdi-star</v-icon>
-            <span class="item-space"> </span>
+            <v-icon class="pr-3">mdi-star</v-icon>
             SERVICE
           </nuxt-link>
         </v-tab>
         <v-tab class="ml-4 text-h6">
           <nuxt-link to="/users/login" class="text-decoration-none grey--text">
-            <v-icon>mdi-account-circle</v-icon>
-            <span class="item-space"> </span>
+            <v-icon class="pr-3">mdi-account-circle</v-icon>
             LOGIN
           </nuxt-link>
         </v-tab>
@@ -106,8 +102,7 @@
         <v-list-item-group>
           <v-list-item>
             <nuxt-link to="/" class="text-decoration-none grey--text">
-              <v-icon>mdi-star</v-icon>
-              <span class="item-space"> </span>
+              <v-icon class="pr-3">mdi-star</v-icon>
               SERVICE
             </nuxt-link>
           </v-list-item>
@@ -116,8 +111,7 @@
               to="/users/login"
               class="text-decoration-none grey--text"
             >
-              <v-icon>mdi-account-circle</v-icon>
-              <span class="item-space"> </span>
+              <v-icon class="pr-3">mdi-account-circle</v-icon>
               LOGIN
             </nuxt-link>
           </v-list-item>
@@ -155,9 +149,7 @@ export default {
     display: block !important;
   }
 }
-.item-space {
-  padding: 3px;
-}
+
 .logo {
   height: 40px;
   width: 40px;

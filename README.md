@@ -1,4 +1,4 @@
-# Habits_app
+# Habits
 
 ## TOP-Image
 
@@ -36,7 +36,7 @@
 - CSS/SCSS
 - Nuxt 2.0.0
 
-###　主要パッケージ
+### 主要パッケージ
 
 - chart.js/vuetify/moment/vee-validate
 
