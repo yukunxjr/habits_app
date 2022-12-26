@@ -13,11 +13,11 @@ export default {
           {
             label: ["1日の学習時間合計"],
             backgroundColor: [
-              "rgba(255, 159, 64, 0.8)",
-              "rgba(255, 205, 86, 0.8)",
-              "rgba(54, 162, 235, 0.8)",
-              "rgba(255, 99, 132, 0.8)",
-              "rgba(153, 102, 255, 0)",
+              "rgba(30, 150, 210, 0.8)",
+              "rgba(40, 180, 230, 0.8)",
+              "rgba(20, 120, 190, 0.8)",
+              "rgba(0, 60, 150, 0.8)",
+              "rgba(10, 90, 170, 0)",
             ],
             data: [
               0,
@@ -33,6 +33,14 @@ export default {
         responsive: true,
         maintainAspectRatio: false,
         scales: { y: { min: 0 } },
+        tooltips: {
+          enabled: false,
+        },
+        plugins: {
+          tooltip: {
+            enabled: false,
+          },
+        },
       },
     };
   },
