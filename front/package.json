@@ -20,7 +20,8 @@
     "vee-validate": "^4.7.2",
     "vue-awesome-swiper": "^5.0.1",
     "vue-chartjs": "3.4.2",
-    "vue-circular-count-down-timer": "^2.0.0"
+    "vue-circular-count-down-timer": "^2.0.0",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@nuxtjs/moment": "^1.6.1",

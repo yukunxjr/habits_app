@@ -31,11 +31,12 @@ RUN apk update && \
 # ホスト（自分のパソコンにあるファイル）から必要ファイルをDocker上にコピー
 ADD . ${HOME}
 
-# ポート3000番をあける
-EXPOSE 3000
+# ポート8000番をあける
+EXPOSE 8000
 
 # コマンドを実行
-CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "development"]
+# 開発環境
+# CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "8000", "-e", "development"]
 
 # 本番環境
-# CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "8000", "-e", "production"]

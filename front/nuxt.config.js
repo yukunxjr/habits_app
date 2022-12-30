@@ -67,11 +67,13 @@ export default {
   },
 
   axios: {
-    baseURL: "http://localhost:3000/",
+    // baseURL: "http://localhost:3000/",
+    baseURL: "https://learning-management-app-habits-api.net",
   },
   proxy: {
     "/api/v1/": {
-      target: "http://localhost:3000",
+      // target: "http://localhost:3000",
+      target: "https://learning-management-app-habits-api.net",
       pathRewrite: {
         "^/api/v1/": "/api/v1/",
       },
