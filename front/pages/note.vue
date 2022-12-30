@@ -137,7 +137,7 @@
 import EditNote from "@/components/Note/EditNote.vue";
 import EditNoteResponsive from "@/components/Note/EditNoteResponsive.vue";
 import CreateNote from "@/components/Note/CreateNote.vue";
-import Trashcan from "@/components/Note/Trashcan.vue";
+import Trashcan from "@/components/Note/TrashCan.vue";
 export default {
   components: { EditNote, EditNoteResponsive, CreateNote, Trashcan },
   data() {
