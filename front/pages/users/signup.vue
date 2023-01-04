@@ -68,10 +68,10 @@
 export default {
   data: function () {
     return {
-      name: "test",
-      email: "test1@test.com",
-      password: "password",
-      password_confirmation: "password",
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
       show1: false,
       show2: false,
       valid: true,
