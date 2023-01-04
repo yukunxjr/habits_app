@@ -45,8 +45,8 @@
 export default {
   data: function () {
     return {
-      email: "test5@test.com",
-      password: "password",
+      email: "",
+      password: "",
       error: null,
       show: false,
     };
