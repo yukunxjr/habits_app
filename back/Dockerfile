@@ -1,18 +1,14 @@
 FROM ruby:2.7.6-alpine
 
-# 必要パッケージのダウンロード
 ENV RUNTIME_PACKAGES="linux-headers libxml2-dev make gcc libc-dev nodejs tzdata mysql-dev mysql-client yarn" \
     DEV_PACKAGES="build-base curl-dev" \
     HOME="/app" \
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo
 
-# 作業ディレクトリに移動
 WORKDIR ${HOME}
-
-# ホスト（自分のパソコンにあるファイル）から必要ファイルをDocker上にコピー
-ADD Gemfile ${HOME}/Gemfile
-ADD Gemfile.lock ${HOME}/Gemfile.lock
+COPY Gemfile ${HOME}/Gemfile  
+COPY Gemfile.lock ${HOME}/Gemfile.lock
 
 RUN apk update && \
     apk upgrade && \
@@ -20,7 +16,6 @@ RUN apk update && \
     apk add --update --virtual build-dependencies --no-cache ${DEV_PACKAGES} && \
     bundle install -j4 && \
     apk del build-dependencies && \
-    apk add --no-cache gcompat \
     rm -rf /usr/local/bundle/cache/* \
     /usr/local/share/.cache/* \
     /var/cache/* \
@@ -28,15 +23,6 @@ RUN apk update && \
     /usr/lib/mysqld* \
     /usr/bin/mysql*
 
-# ホスト（自分のパソコンにあるファイル）から必要ファイルをDocker上にコピー
 ADD . ${HOME}
-
-# ポート8000番をあける
 EXPOSE 8000
-
-# コマンドを実行
-# 開発環境
-# CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "8000", "-e", "development"]
-
-# 本番環境
 CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "8000", "-e", "production"]
