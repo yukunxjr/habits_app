@@ -24,5 +24,5 @@ RUN apk update && \
     /usr/bin/mysql*
 
 ADD . ${HOME}
-EXPOSE 8000
-CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "8000", "-e", "production"]
+EXPOSE 3000
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
