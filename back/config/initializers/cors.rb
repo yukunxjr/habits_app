@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins ["https://learning-management-app-habits.com", 'http://localhost:3000']
+    origins ["https://learning-management-habits.com", 'http://localhost:3000']
 
 
     resource '*',

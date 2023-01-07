@@ -18,7 +18,7 @@ RUN apk update && \
     yarn add yarn
 
 
-EXPOSE 8000
+EXPOSE 3000
 
 RUN yarn run build
 

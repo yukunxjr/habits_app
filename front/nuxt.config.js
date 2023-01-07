@@ -6,8 +6,9 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: "%s - " + process.env.npm_package_name,
-    title: process.env.npm_package_name || "",
+    // titleTemplate: "%s - " + process.env.npm_package_name,
+    // title: process.env.npm_package_name || "",
+    title: "Habits-app",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -68,14 +69,11 @@ export default {
 
   axios: {
     // baseURL: "http://localhost:3000/",
-    baseURL:
-      "https://learning-management-app-habits-api.net : http://localhost:3000",
+    baseURL: "https://learning-management-habits-api.net",
   },
   proxy: {
     "/api/v1/": {
-      // target: "http://localhost:3000",
-      target:
-        "https://learning-management-app-habits-api.net: http://localhost:3000",
+      target: "https://learning-management-habits-api.net",
       pathRewrite: {
         "^/api/v1/": "/api/v1/",
       },
