@@ -68,7 +68,6 @@ export default {
   },
 
   axios: {
-    // baseURL: "http://localhost:3000/",
     baseURL: "https://learning-management-habits-api.net",
   },
   proxy: {
