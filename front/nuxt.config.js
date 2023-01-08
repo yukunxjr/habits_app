@@ -68,11 +68,17 @@ export default {
   },
 
   axios: {
-    baseURL: "https://learning-management-habits-api.net",
+    baseURL:
+      process.env.NODE_ENV === "production"
+        ? "https://learning-management-habits-api.net"
+        : "http://localhost:8000",
   },
   proxy: {
     "/api/v1/": {
-      target: "https://learning-management-habits-api.net",
+      target:
+        process.env.NODE_ENV === "production"
+          ? "https://learning-management-habits-api.net"
+          : "http://localhost:8000",
       pathRewrite: {
         "^/api/v1/": "/api/v1/",
       },
