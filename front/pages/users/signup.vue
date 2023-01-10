@@ -90,7 +90,7 @@ export default {
   methods: {
     async signup() {
       try {
-        await this.$axios.post("http://localhost:3000/api/v1/auth", {
+        await this.$axios.post("/api/v1/auth", {
           name: this.name,
           email: this.email,
           password: this.password,
