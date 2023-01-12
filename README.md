@@ -6,6 +6,8 @@
 
 ## URL
 
+https://learning-management-habits.com
+
 ## 概要
 
 勉強時間を計測及び管理し、勉強時間や勉強量を可視化できるアプリです。
@@ -60,7 +62,7 @@ MySQL 8.0.31
 ### 本番環境
 
 - AWS(ECR,ECS,S3,Route53,ALB)
-- RDB(AmazonAurora)
+- RDB
 
 ### ソースコード管理
 
