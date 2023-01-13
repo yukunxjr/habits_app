@@ -1,4 +1,5 @@
 import colors from "vuetify/es5/util/colors";
+require("dotenv").config();
 
 export default {
   mode: "spa",
@@ -43,7 +44,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/axios", "@nuxtjs/auth", "@nuxtjs/proxy"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/auth", "@nuxtjs/proxy", "@nuxtjs/dotenv"],
 
   /*
    ** vuetify module configuration
@@ -70,7 +71,7 @@ export default {
   axios: {
     baseURL:
       process.env.NODE_ENV === "production"
-        ? "https://learning-management-habits-api.net"
+        ? `${process.env.API_BASE_URL}`
         : "http://localhost:8000",
     proxy: true,
   },
@@ -78,7 +79,7 @@ export default {
     "/api/v1/": {
       target:
         process.env.NODE_ENV === "production"
-          ? "https://learning-management-habits-api.net"
+          ? `${process.env.API_BASE_URL}`
           : "http://localhost:8000",
       pathRewrite: {
         "^/api/v1/": "/api/v1/",
