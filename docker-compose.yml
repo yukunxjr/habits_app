@@ -40,5 +40,4 @@ volumes:
   public-data:
   tmp-data:
   log-data:
-  # db-data:
   mysql_data:
