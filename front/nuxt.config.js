@@ -73,7 +73,7 @@ export default {
       process.env.NODE_ENV === "production"
         ? "https://learning-management-habits-api.net"
         : "http://localhost:8000",
-    proxy: true,
+    // proxy: true,
   },
   proxy: {
     "/api/v1/": {
