@@ -2,11 +2,11 @@
 
 ## TOP-Image
 
-<img width="1424" alt="habits_app_main_image" src="https://user-images.githubusercontent.com/109594942/209146779-d2fa64b0-52b4-4b22-937b-55a2178f6252.png">
+<img width="1424" alt="habits_app_main_image" src="https://user-images.githubusercontent.com/109594942/209146779-d2fa64b0-52b4-4b22-937b-55a2178f6252.png"> 
 
 ## URL
 
-https://learning-management-habits.com
+公開停止にしました。
 
 ## 概要
 
